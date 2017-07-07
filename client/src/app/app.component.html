@@ -1,0 +1,53 @@
+<md-sidenav-container class="navigation-container">
+  <md-sidenav #sidenav class="menu-sidenav">
+    <md-list>
+      <h3 md-subheader>Réservation</h3>
+      <md-list-item>
+        <md-icon md-list-icon>event</md-icon>
+        <h4 md-line>Calendrier</h4>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>event_note</md-icon>
+        <h4 md-line>Mes réservartion en attente</h4>
+      </md-list-item>
+      <md-divider></md-divider>
+      <h3 md-subheader>Salles</h3>
+      <md-list-item>
+        <md-icon md-list-icon>store</md-icon>
+        <h4 md-line>Salles disponibles</h4>
+      </md-list-item>
+      <md-divider></md-divider>
+      <h3 md-subheader>Administration</h3>
+      <md-list-item>
+        <md-icon md-list-icon>store</md-icon>
+        <h4 md-line>Salles</h4>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>event_available</md-icon>
+        <h4 md-line>Réservations acceptées</h4>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>event_note</md-icon>
+        <h4 md-line>Réservations en attente</h4>
+      </md-list-item>
+      <md-list-item>
+        <md-icon md-list-icon>event_busy</md-icon>
+        <h4 md-line>Réservations refusées</h4>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+
+  <div class="sidenav-content">
+    <md-toolbar color="primary">
+      <button type="button" md-button (click)="sidenav.open()">
+          <md-icon class="toolbar-icon">menu</md-icon>
+        </button>
+      <span>Room Reservation</span>
+      <span class="spacer"></span>
+      <md-icon class="toolbar-icon">notifications</md-icon>
+      <md-icon class="toolbar-icon">account_circle</md-icon>
+    </md-toolbar>
+    <!-- <router-outlet></router-outlet> -->
+  </div>
+
+</md-sidenav-container>
