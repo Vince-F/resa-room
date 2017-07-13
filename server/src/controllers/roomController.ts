@@ -30,7 +30,7 @@ export class RoomController {
         });
     }
 
-    retrieveRoomList() : Promise<Room> {
+    retrieveRoomList() : Promise<Array<Room>> {
         return new Promise((resolve,reject) => {
             resolve(Array.from(this.testData.values()));
         });

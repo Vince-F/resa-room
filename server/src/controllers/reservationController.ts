@@ -1,6 +1,6 @@
 import {Reservation} from "../../../common/models/reservation";
 
-export class RoomController {
+export class ReservationController {
     testData:Map<string,Reservation>;
 
     constructor() {
