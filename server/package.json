@@ -1,0 +1,14 @@
+{
+  "name": "roomreservation-server",
+  "version": "0.1.0",
+  "description": "The application server for the RoomReservation application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vincent Francolin",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}

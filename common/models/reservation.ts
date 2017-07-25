@@ -1,5 +1,6 @@
 export class Reservation {
     _id:string;
+    authorId:string;
     roomId:string;
     beginDate:Date;
     endDate:Date;
