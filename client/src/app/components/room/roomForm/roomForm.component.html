@@ -1,0 +1,11 @@
+<form>
+    <md-input-container class="full-width">
+        <input [(ngModel)]="roomData.name" mdInput placeholder="Nom">
+    </md-input-container>
+    <md-input-container class="full-width">
+        <input mdInput [(ngModel)]="roomData.capacity" placeholder="Capacité maximale">
+    </md-input-container>
+    <md-input-container class="full-width">
+        <textarea mdInput [(ngModel)]="roomData.description" placeholder="Description"></textarea>
+    </md-input-container>
+</form>
