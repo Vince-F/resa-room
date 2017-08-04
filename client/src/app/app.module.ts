@@ -6,7 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-import {MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule} from "@angular/material";
+import {MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdTableModule} from "@angular/material";
+import {CdkTableModule} from "@angular/cdk";
 
 import { RoomFormComponent } from "./components/room/roomForm/roomForm.component";
 import { RoomListComponent } from "./components/room/roomList/roomList.component";
@@ -33,7 +34,8 @@ import 'hammerjs';
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule
+    CdkTableModule,
+    MdTableModule,MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

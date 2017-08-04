@@ -1,6 +1,6 @@
 ROOM LIST
 <div class="table-container">
-    <!-- <md-table #table [dataSource]="dataSource" mdSort>
+    <md-table #table [dataSource]="listSource" mdSort>
 
         <ng-container cdkColumnDef="name">
             <md-header-cell *cdkHeaderCellDef md-sort-header> Nom </md-header-cell>
@@ -19,5 +19,5 @@ ROOM LIST
 
         <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
         <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
-    </md-table> -->
+    </md-table>
 </div>
