@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: 'room/new', component:RoomFormComponent},
   { path: 'room/:id', component:RoomFormComponent},
   //{ path: 'room/:id/edit',},
-  { path: '',   redirectTo: '/calendar', pathMatch: 'full' },
+  //{ path: '',   redirectTo: '/calendar', pathMatch: 'full' },
   //{ path: 'admin/reservations/:state',},
   // { path: '**', component: PageNotFoundComponent }
 ];

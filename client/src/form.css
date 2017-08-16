@@ -1,0 +1,9 @@
+.form-container {
+    background: white;
+    padding: 0 24px;
+}
+
+.form-container md-input-container {
+    display: inline-block;
+    width: 100%;
+}

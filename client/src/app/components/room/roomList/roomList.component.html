@@ -1,6 +1,21 @@
-ROOM LIST
+<div class="header-container">
+    <div class="title-area">Room list</div>
+    <div class="toolbox-area">
+        <button type="button" md-button (click)="addRoom()">
+            <md-icon>add</md-icon>
+        </button>
+        <button type="button" md-button (click)="deleteRooms()">
+            <md-icon>delete</md-icon>
+        </button>
+    </div>
+</div>
 <div class="table-container">
     <md-table #table [dataSource]="listSource" mdSort>
+
+        <ng-container cdkColumnDef="selection">
+            <md-header-cell *cdkHeaderCellDef >  </md-header-cell>
+            <md-cell *cdkCellDef="let row">  </md-cell>
+        </ng-container>
 
         <ng-container cdkColumnDef="name">
             <md-header-cell *cdkHeaderCellDef md-sort-header> Nom </md-header-cell>
@@ -17,7 +32,19 @@ ROOM LIST
             <md-cell *cdkCellDef="let row"> {{row.description}} </md-cell>
         </ng-container>
 
+        <ng-container cdkColumnDef="controls">
+            <md-header-cell *cdkHeaderCellDef class="small-col" > </md-header-cell>
+            <md-cell *cdkCellDef="let row" class="small-col"> 
+                <button type="button" md-button>
+                    <md-icon>edit</md-icon>
+                </button>
+                <button type="button" md-button>
+                    <md-icon>delete</md-icon>
+                </button>
+            </md-cell>
+        </ng-container>
+
         <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;" (click)="displayRoom(row)"></md-row>
     </md-table>
 </div>

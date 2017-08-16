@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-import {MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdTableModule} from "@angular/material";
+import {MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdTableModule,MdSnackBarModule} from "@angular/material";
 import {CdkTableModule} from "@angular/cdk";
 
 import { RoomFormComponent } from "./components/room/roomForm/roomForm.component";
@@ -14,6 +14,11 @@ import { RoomListComponent } from "./components/room/roomList/roomList.component
 
 import { ReservationFormComponent } from "./components/reservation/reservationForm/reservationForm.component";
 import { ReservationListComponent } from "./components/reservation/reservationList/reservationList.component";
+
+import { HttpModule } from '@angular/http';
+
+import { RoomApiService } from "./services/api/roomApiService";
+import { ReservationApiService } from "./services/api/reservationApiService";
 
 import { AppComponent } from './app.component';
 
@@ -32,12 +37,15 @@ import 'hammerjs';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CdkTableModule,
-    MdTableModule,MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule
+    MdTableModule,MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdSnackBarModule
   ],
-  providers: [],
+  providers: [
+    ReservationApiService,RoomApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

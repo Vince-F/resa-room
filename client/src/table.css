@@ -1,0 +1,31 @@
+.header-container {
+    white-space: nowrap;
+    background: white;
+    padding: 16px 24px;
+}
+
+.header-container .title-area {
+    display: inline-block;
+    white-space: nowrap;
+    width: 50%;
+    font-size: 20px;
+}
+
+.header-container .toolbox-area {
+    display: inline-block;
+    white-space: nowrap;
+    width: 50%;
+    font-size: 24px;
+    color: rgba(0,0,0,0.54);
+    text-align: right;
+}
+
+.header-container .toolbox-area .mat-button {
+    min-width: 0px;
+}
+
+.mat-cell.small-col, 
+.mat-header-cell.small-col{
+    flex:0;
+    padding: 0 16px;
+}
