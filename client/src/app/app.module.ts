@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-import {MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdTableModule,MdSnackBarModule} from "@angular/material";
+import {MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdTableModule,MdSnackBarModule,MdCheckboxModule,MdDialogModule} from "@angular/material";
 import {CdkTableModule} from "@angular/cdk";
 
 import { RoomFormComponent } from "./components/room/roomForm/roomForm.component";
@@ -41,7 +41,7 @@ import 'hammerjs';
     BrowserAnimationsModule,
     AppRoutingModule,
     CdkTableModule,
-    MdTableModule,MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdSnackBarModule
+    MdTableModule,MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdSnackBarModule,MdCheckboxModule,MdDialogModule
   ],
   providers: [
     ReservationApiService,RoomApiService

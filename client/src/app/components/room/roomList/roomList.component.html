@@ -13,8 +13,8 @@
     <md-table #table [dataSource]="listSource" mdSort>
 
         <ng-container cdkColumnDef="selection">
-            <md-header-cell *cdkHeaderCellDef >  </md-header-cell>
-            <md-cell *cdkCellDef="let row">  </md-cell>
+            <md-header-cell *cdkHeaderCellDef class="small-col" > <md-checkbox></md-checkbox> </md-header-cell>
+            <md-cell *cdkCellDef="let row" class="small-col"> <md-checkbox></md-checkbox> </md-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="name">
@@ -33,18 +33,18 @@
         </ng-container>
 
         <ng-container cdkColumnDef="controls">
-            <md-header-cell *cdkHeaderCellDef class="small-col" > </md-header-cell>
+            <md-header-cell *cdkHeaderCellDef class="small-col" > <div class="controls-header"></div> </md-header-cell>
             <md-cell *cdkCellDef="let row" class="small-col"> 
-                <button type="button" md-button>
+                <button type="button" md-button (click)="displayRoom(row)">
                     <md-icon>edit</md-icon>
                 </button>
-                <button type="button" md-button>
+                <button type="button" md-button (click)="deleteRoom(row)">
                     <md-icon>delete</md-icon>
                 </button>
             </md-cell>
         </ng-container>
 
         <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-        <md-row *cdkRowDef="let row; columns: displayedColumns;" (click)="displayRoom(row)"></md-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></md-row>
     </md-table>
 </div>
