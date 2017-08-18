@@ -15,6 +15,8 @@ import { RoomListComponent } from "./components/room/roomList/roomList.component
 import { ReservationFormComponent } from "./components/reservation/reservationForm/reservationForm.component";
 import { ReservationListComponent } from "./components/reservation/reservationList/reservationList.component";
 
+import {ConfirmationModalComponent} from "./components/modals/confirmationModal/confirmationModal.component";
+
 import { HttpModule } from '@angular/http';
 
 import { RoomApiService } from "./services/api/roomApiService";
@@ -32,7 +34,11 @@ import 'hammerjs';
     RoomFormComponent,
     RoomListComponent,
     ReservationFormComponent,
-    ReservationListComponent
+    ReservationListComponent,
+    ConfirmationModalComponent
+  ],
+  entryComponents: [
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
