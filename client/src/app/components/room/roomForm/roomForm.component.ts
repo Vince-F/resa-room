@@ -1,6 +1,7 @@
 import {Component,OnInit,Input} from "@angular/core";
 import { Router }  from '@angular/router';
-import { MdSnackBar } from "@angular/material";
+import { MdSnackBar,MdDialog } from "@angular/material";
+import {ConfirmationModalComponent} from "../../modals/confirmationModal/confirmationModal.component";
 
 import {RoomApiService} from "../../../services/api/roomApiService";
 import {Room} from "../../../../../../common/models/room";
@@ -18,11 +19,12 @@ export class RoomFormComponent implements OnInit {
 
     constructor(private roomApiService:RoomApiService,
                 private router:Router,
-                private snackbar:MdSnackBar) {
+                private snackbar:MdSnackBar,
+                private dialog:MdDialog) {
 
     }
 
-    cancel() {
+    cancelCreation() {
         this.router.navigate(["/rooms"]);
     }
 
@@ -34,6 +36,13 @@ export class RoomFormComponent implements OnInit {
             }).catch((error) => {
                 this.snackbar.open("Impossible de créer la salle, erreur: " + error);
             });
+    }
+
+    delete() {
+        let modal = this.dialog.open(ConfirmationModalComponent);
+        modal.afterClosed().subscribe((result) => {
+
+        });
     }
 
     isNewRoom(): boolean {
@@ -58,6 +67,10 @@ export class RoomFormComponent implements OnInit {
             this.roomData = this.room;
         } else {
             // load data
+            this.roomData = <Room> {
+                _id:"test",
+                name:"TestRoom",
+            }
         }
     }
 
