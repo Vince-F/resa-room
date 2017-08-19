@@ -1,4 +1,4 @@
-import {Component,OnInit} from "@angular/core";
+import {Component,OnInit,Input} from "@angular/core";
 import { Router }  from '@angular/router';
 import { MdSnackBar } from "@angular/material";
 
@@ -10,6 +10,9 @@ import {Room} from "../../../../../../common/models/room";
     templateUrl:"roomForm.component.html"
 })
 export class RoomFormComponent implements OnInit {
+    @Input() room:Room;
+    @Input() readOnly: boolean;
+    
     roomData:any;
     currentId:string;
 
@@ -51,6 +54,8 @@ export class RoomFormComponent implements OnInit {
     ngOnInit() {
         if(this.router.url === "/room/new") {
             this.roomData = {};
+        } else if(this.room) {
+            this.roomData = this.room;
         } else {
             // load data
         }
@@ -68,7 +73,7 @@ export class RoomFormComponent implements OnInit {
     update() {
         this.roomApiService.update(this.currentId,this.roomData)
             .then(() => {
-
+                this.snackbar.open("Salle mise à jour avec succès");
             }).catch((error) => {
                 this.snackbar.open("Impossible de sauvegarder les données de la salle, erreur: " + error);
             });

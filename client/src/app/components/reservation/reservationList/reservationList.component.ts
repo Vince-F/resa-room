@@ -34,7 +34,8 @@ export class ReservationListComponent {
     }
 
     ngOnInit() {
-        this.listSource = new ReservationDataSource();
+        let filter = {};
+        this.listSource = new ReservationDataSource(filter);
     }
 
 }

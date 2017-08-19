@@ -5,6 +5,11 @@ import {Reservation} from "../../../../common/models/reservation";
 import 'rxjs/add/observable/from';
 
 export class ReservationDataSource extends DataSource<any> {
+
+    constructor(private filter:any) {
+        super();
+    }
+
     connect(): Observable<Reservation[]> {
         let testData:Array<Reservation[]> = [
             [{_id:"15656",authorId:"test",roomId:"1234",beginDate:new Date("2017-08-01T08:00:00.000Z"),endDate:new Date("2017-08-01T10:00:00.000Z"),comment:"huf"},{_id:"48684",authorId:"test",roomId:"3455",beginDate:new Date("2017-08-02T18:00:00.000Z"),endDate:new Date("2017-08-02T22:30:00.000Z"),comment:"huok"}], // set 1

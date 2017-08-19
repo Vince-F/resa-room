@@ -1,1 +1,36 @@
-RESERVATION FORM
+<div class="header-container">
+    <div class="title-area">Reservation</div>
+    <div class="toolbox-area">
+        <button md-button (click)="save()">
+            <md-icon>save</md-icon>
+        </button>
+        <button md-button *ngIf="isNewReservation()" (click)="cancelCreation()">
+            <md-icon>cancel</md-icon>
+        </button>
+        <button md-button *ngIf="!isNewReservation()" (click)="deleteRoom()">
+            <md-icon>delete</md-icon>
+        </button>
+    </div>
+</div>
+<form class="form-container">
+    <md-input-container class="full-width">
+        <!-- combo box or autocomplete? -->
+    </md-input-container>
+    <md-input-container class="full-width">
+        <!-- date selector -->
+    </md-input-container>
+    <!-- begin hour -->
+    <md-input-container>
+
+    </md-input-container>
+    <md-input-container>
+
+    </md-input-container>
+    <!-- end hour -->
+    <md-input-container>
+
+    </md-input-container>
+    <md-input-container>
+
+    </md-input-container>
+</form>
