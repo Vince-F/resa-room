@@ -12,10 +12,25 @@ export class ReservationFormComponent {
     currentId:string;
     reservationData:any;
 
+    rooms:Array<any> = [
+        {_id:"hu",name:"concert"},
+        {_id:"huuiijui",name:"fête"}
+    ]
+
+    hours:Array<number>;
+    minutes:Array<number>;
+
     constructor(private reservationApiService:ReservationApiService,
                 private router:Router,
                 private snackbar:MdSnackBar) {
-
+        this.hours = [];
+        this.minutes = [];
+        for(var i=0; i<24;i++) {
+            this.hours.push(i);
+        }
+        for(var j = 0;j<60; j+=5) {
+            this.minutes.push(j);
+        }
     }
 
     create() {
@@ -26,6 +41,10 @@ export class ReservationFormComponent {
             }).catch((error) => {
                 this.snackbar.open("Impossible de créer la réservation, erreur: " + error);
             });
+    }
+
+    isNewReservation() {
+        return true;
     }
 
     save() {

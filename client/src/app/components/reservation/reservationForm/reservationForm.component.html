@@ -13,24 +13,38 @@
     </div>
 </div>
 <form class="form-container">
-    <md-input-container class="full-width">
-        <!-- combo box or autocomplete? -->
+    <md-select placeholder="Salle" [(ngModel)]="selectedRoom" name="room">
+        <md-option *ngFor="let room of rooms" [value]="room._id">
+            {{room.name}}
+        </md-option>
+    </md-select>
+    <md-input-container>
+        <input mdInput [mdDatepicker]="picker" placeholder="Jour de la réservation">
+        <button mdSuffix [mdDatepickerToggle]="picker"></button>
     </md-input-container>
-    <md-input-container class="full-width">
-        <!-- date selector -->
-    </md-input-container>
+    <md-datepicker #picker></md-datepicker>
     <!-- begin hour -->
-    <md-input-container>
-
-    </md-input-container>
-    <md-input-container>
-
-    </md-input-container>
+    <div>
+        <md-select placeholder="Heure(début)" [(ngModel)]="beginHour" name="beginHour">
+            <md-option *ngFor="let hour of hours" [value]="hour">
+                {{hour}}
+            </md-option>
+        </md-select><md-select placeholder="Minute(début)" [(ngModel)]="beginMinute" name="beginMinute">
+            <md-option *ngFor="let minute of minutes" [value]="minute">
+                {{minute}}
+            </md-option>
+        </md-select>
+    </div>
     <!-- end hour -->
-    <md-input-container>
-
-    </md-input-container>
-    <md-input-container>
-
-    </md-input-container>
+    <div>
+        <md-select placeholder="Heure(fin)" [(ngModel)]="endHour" name="endHour">
+            <md-option *ngFor="let hour of hours" [value]="hour">
+                {{hour}}
+            </md-option>
+        </md-select><md-select placeholder="Minute(fin)" [(ngModel)]="endMinute" name="endMinute">
+            <md-option *ngFor="let minute of minutes" [value]="minute">
+                {{minute}}
+            </md-option>
+        </md-select>
+    </div>
 </form>
