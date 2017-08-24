@@ -4,6 +4,10 @@
     padding: 16px 24px;
 }
 
+.header-container .back-arrow {
+    min-width: 1px;
+}
+
 .header-container .title-area {
     display: inline-block;
     white-space: nowrap;

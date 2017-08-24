@@ -43,6 +43,10 @@ export class ReservationFormComponent {
             });
     }
 
+    goBackToList() {
+        this.router.navigate(["/reservations"]);
+    }
+
     isNewReservation() {
         return true;
     }

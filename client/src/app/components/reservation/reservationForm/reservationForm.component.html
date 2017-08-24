@@ -1,5 +1,10 @@
 <div class="header-container">
-    <div class="title-area">Reservation</div>
+    <div class="title-area">
+        <button class="back-arrow" type="button" md-button (click)="goBackToList()">
+            <md-icon>arrow_back</md-icon>
+        </button>
+        Reservation
+    </div>
     <div class="toolbox-area">
         <button md-button (click)="save()">
             <md-icon>save</md-icon>
@@ -13,11 +18,13 @@
     </div>
 </div>
 <form class="form-container">
-    <md-select placeholder="Salle" [(ngModel)]="selectedRoom" name="room">
-        <md-option *ngFor="let room of rooms" [value]="room._id">
-            {{room.name}}
-        </md-option>
-    </md-select>
+    <div>
+        <md-select placeholder="Salle" [(ngModel)]="selectedRoom" name="room">
+            <md-option *ngFor="let room of rooms" [value]="room._id">
+                {{room.name}}
+            </md-option>
+        </md-select>
+    </div>
     <md-input-container>
         <input mdInput [mdDatepicker]="picker" placeholder="Jour de la réservation">
         <button mdSuffix [mdDatepickerToggle]="picker"></button>

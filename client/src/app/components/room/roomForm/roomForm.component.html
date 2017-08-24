@@ -1,25 +1,37 @@
 <div class="header-container">
-    <div class="title-area">Room</div>
+    
+    <div class="title-area">
+        <button class="back-arrow" type="button" md-button (click)="goBackToList()">
+            <md-icon>arrow_back</md-icon>
+        </button>
+        Room
+    </div>
     <div class="toolbox-area">
         <button md-button (click)="save()">
             <md-icon>save</md-icon>
         </button>
-        <button md-button *ngIf="isNewRoom()" (click)="cancelCreation()">
-            <md-icon>cancel</md-icon>
-        </button>
-        <button md-button *ngIf="!isNewRoom()" (click)="deleteRoom()">
+        <!-- <button md-button *ngIf="isNewRoom()" (click)="cancelCreation()">
+            <md-icon>undo</md-icon>
+        </button>-->
+        <button md-button *ngIf="!isNewRoom()" (click)="delete()">
             <md-icon>delete</md-icon>
         </button>
     </div>
 </div>
 <form class="form-container">
-    <md-input-container class="full-width">
-        <input [(ngModel)]="roomData.name" name="name" mdInput placeholder="Nom">
-    </md-input-container>
-    <md-input-container class="full-width">
-        <input mdInput [(ngModel)]="roomData.capacity" name="capacity" placeholder="Capacité maximale">
-    </md-input-container>
-    <md-input-container class="full-width">
-        <textarea mdInput [(ngModel)]="roomData.description" name="capacity" placeholder="Description"></textarea>
-    </md-input-container>
+    <div>
+        <md-input-container class="full-width">
+            <input [(ngModel)]="roomData.name" name="name" mdInput placeholder="Nom">
+        </md-input-container>
+    </div>
+    <div>
+        <md-input-container class="full-width">
+            <input mdInput [(ngModel)]="roomData.capacity" name="capacity" placeholder="Capacité maximale">
+        </md-input-container>
+    </div>
+    <div>
+        <md-input-container class="full-width">
+            <textarea mdInput [(ngModel)]="roomData.description" name="capacity" placeholder="Description"></textarea>
+        </md-input-container>
+    </div>
 </form>
