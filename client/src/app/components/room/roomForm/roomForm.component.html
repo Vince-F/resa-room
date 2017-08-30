@@ -7,13 +7,13 @@
         Room
     </div>
     <div class="toolbox-area">
-        <button md-button (click)="save()">
+        <button md-button *ngIf="isAdmin()" (click)="save()">
             <md-icon>save</md-icon>
         </button>
         <!-- <button md-button *ngIf="isNewRoom()" (click)="cancelCreation()">
             <md-icon>undo</md-icon>
         </button>-->
-        <button md-button *ngIf="!isNewRoom()" (click)="delete()">
+        <button md-button *ngIf="!isNewRoom() && isAdmin()" (click)="delete()">
             <md-icon>delete</md-icon>
         </button>
     </div>
@@ -21,17 +21,17 @@
 <form class="form-container">
     <div>
         <md-input-container class="full-width">
-            <input [(ngModel)]="roomData.name" name="name" mdInput placeholder="Nom">
+            <input [(ngModel)]="roomData.name" name="name" [disabled]="readOnly" mdInput placeholder="Nom">
         </md-input-container>
     </div>
     <div>
         <md-input-container class="full-width">
-            <input mdInput [(ngModel)]="roomData.capacity" name="capacity" placeholder="Capacité maximale">
+            <input mdInput [(ngModel)]="roomData.capacity" name="capacity" [disabled]="readOnly" placeholder="Capacité maximale">
         </md-input-container>
     </div>
     <div>
         <md-input-container class="full-width">
-            <textarea mdInput [(ngModel)]="roomData.description" name="capacity" placeholder="Description"></textarea>
+            <textarea mdInput [(ngModel)]="roomData.description" name="capacity" [disabled]="readOnly" placeholder="Description"></textarea>
         </md-input-container>
     </div>
 </form>

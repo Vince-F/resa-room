@@ -25,11 +25,15 @@ export class RoomListComponent {
     }
 
     addRoom() {
-        this.router.navigate(["/room/new"]);
+        this.router.navigate(["/admin/room/new"]);
     }
 
     displayRoom(selectedRoom: Room) {
         this.router.navigate(["/room", selectedRoom._id]);
+    }
+
+    editRoom(selectedRoom: Room) {
+        this.router.navigate(["/admin/room", selectedRoom._id]);
     }
 
     deleteRoom(selectedRoom: Room) {
@@ -54,6 +58,10 @@ export class RoomListComponent {
         this.selectedRooms.forEach((entry) => {
             this.roomApiService.delete(entry._id);
         });
+    }
+
+    isAdmin():boolean {
+        return this.router.url === "/admin/rooms";
     }
 
     ngOnInit() {

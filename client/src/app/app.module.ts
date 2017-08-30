@@ -6,8 +6,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-import {MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdTableModule,MdSnackBarModule,MdCheckboxModule,MdDialogModule,MdDatepickerModule,MdNativeDateModule,MdSelectModule} from "@angular/material";
+import {MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdTableModule,MdSnackBarModule,MdCheckboxModule,MdDialogModule,MdDatepickerModule,MdNativeDateModule,MdSelectModule,MdCardModule} from "@angular/material";
 import {CdkTableModule} from "@angular/cdk";
+
+import { LoginComponent } from "./components/user/login/login.component";
 
 import { RoomFormComponent } from "./components/room/roomForm/roomForm.component";
 import { RoomListComponent } from "./components/room/roomList/roomList.component";
@@ -35,7 +37,8 @@ import 'hammerjs';
     RoomListComponent,
     ReservationFormComponent,
     ReservationListComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    LoginComponent
   ],
   entryComponents: [
     ConfirmationModalComponent
@@ -47,7 +50,7 @@ import 'hammerjs';
     BrowserAnimationsModule,
     AppRoutingModule,
     CdkTableModule,
-    MdTableModule,MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdSnackBarModule,MdCheckboxModule,MdDialogModule,MdDatepickerModule,MdNativeDateModule,MdSelectModule
+    MdTableModule,MdButtonModule,MdToolbarModule,MdIconModule,MdSidenavModule,MdListModule,MdInputModule,MdSnackBarModule,MdCheckboxModule,MdDialogModule,MdDatepickerModule,MdNativeDateModule,MdSelectModule,MdCardModule
   ],
   providers: [
     ReservationApiService,RoomApiService

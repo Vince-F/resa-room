@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute,ParamMap } from '@angular/router';
 import { MdSnackBar, MdDialog } from "@angular/material";
 import { ConfirmationModalComponent } from "../../modals/confirmationModal/confirmationModal.component";
 
 import { RoomApiService } from "../../../services/api/roomApiService";
 import { Room } from "../../../../../../common/models/room";
+
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: "room-form",
@@ -19,13 +21,18 @@ export class RoomFormComponent implements OnInit {
 
     constructor(private roomApiService: RoomApiService,
         private router: Router,
+        private activatedRoute:ActivatedRoute,
         private snackbar: MdSnackBar,
         private dialog: MdDialog) {
 
     }
 
     goBackToList() {
-        this.router.navigate(["/rooms"]);
+        if(this.isAdmin()) {
+            this.router.navigate(["/admin/rooms"]);
+        } else {
+            this.router.navigate(["/rooms"]);
+        }
     }
 
     create() {
@@ -61,8 +68,12 @@ export class RoomFormComponent implements OnInit {
         });
     }
 
+    isAdmin():boolean {
+        return this.router.url === "/admin/room/new";
+    }
+
     isNewRoom(): boolean {
-        return this.router.url === "/room/new";
+        return this.router.url === "/admin/room/new";
     }
 
     load() {
@@ -79,11 +90,20 @@ export class RoomFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        if(!this.isAdmin()) {
+            this.readOnly = true;
+        }
+
         if (this.router.url === "/room/new") {
             this.roomData = {};
         } else if (this.room) {
             this.roomData = this.room;
         } else {
+            this.activatedRoute.paramMap
+                .switchMap((param) => {
+                    this.currentId = param.get("id");
+                    return this.roomApiService.retrieve(param.get("id"));
+                }).subscribe((room:Room) => this.roomData = room);
             // load data
             this.roomData = <Room>{
                 _id: "test",

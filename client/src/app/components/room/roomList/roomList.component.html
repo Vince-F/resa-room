@@ -1,10 +1,10 @@
 <div class="header-container">
     <div class="title-area">Room list</div>
     <div class="toolbox-area">
-        <button type="button" md-button (click)="addRoom()">
+        <button type="button" *ngIf="isAdmin()" md-button (click)="addRoom()">
             <md-icon>add</md-icon>
         </button>
-        <button type="button" md-button (click)="deleteRooms()">
+        <button type="button" *ngIf="isAdmin()" md-button (click)="deleteRooms()">
             <md-icon>delete</md-icon>
         </button>
     </div>
@@ -35,10 +35,13 @@
         <ng-container cdkColumnDef="controls">
             <md-header-cell *cdkHeaderCellDef class="small-col" > <div class="controls-header"></div> </md-header-cell>
             <md-cell *cdkCellDef="let row" class="small-col"> 
-                <button type="button" md-button (click)="displayRoom(row)">
-                    <md-icon>edit</md-icon>
+                <button type="button" *ngIf="!isAdmin()" md-button (click)="displayRoom(row)">
+                    <md-icon>info</md-icon>
                 </button>
-                <button type="button" md-button (click)="deleteRoom(row)">
+                <button type="button" *ngIf="isAdmin()" md-button (click)="editRoom(row)">
+                    <md-icon >edit</md-icon>
+                </button>
+                <button type="button" *ngIf="isAdmin()" md-button (click)="deleteRoom(row)">
                     <md-icon>delete</md-icon>
                 </button>
             </md-cell>

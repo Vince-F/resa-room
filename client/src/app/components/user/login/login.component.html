@@ -1,8 +1,22 @@
-<form>
-    <ng-input-container>
-        <input md-input placeholder="Login" name="login" type="text" />
-    </ng-input-container>
-    <ng-input-container>
-        <input md-input placeholder="Password" name="password" type="password" />
-    </ng-input-container>
-</form>
+<md-card class="login-card">
+    <md-card-header>
+        <md-card-title>
+            Room Reservation
+        </md-card-title>
+    </md-card-header>
+    <md-card-content>
+        <form>
+            <md-input-container class="full-width">
+                <input mdInput placeholder="Login" name="login" type="text" />
+            </md-input-container>
+            <md-input-container class="full-width">
+                <input mdInput placeholder="Password" name="password" type="password" />
+            </md-input-container>
+        </form>
+    </md-card-content>
+    <md-card-actions>
+        <button (click)="connect()" color="primary" md-raised-button>CONNECT</button>
+        <button (click)="debugConnectAsUser()" md-raised-button>Connect as user</button>
+        <button (click)="debugConnectAsAdmin()" md-raised-button>Connect as admin</button>
+    </md-card-actions>
+</md-card>
