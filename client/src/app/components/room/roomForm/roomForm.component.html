@@ -18,7 +18,7 @@
         </button>
     </div>
 </div>
-<form class="form-container">
+<form #dataForm="ngForm" class="form-container">
     <div>
         <md-input-container class="full-width">
             <input [(ngModel)]="roomData.name" name="name" [disabled]="readOnly" mdInput placeholder="Nom">

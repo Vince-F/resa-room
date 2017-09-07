@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input,ViewChild } from "@angular/core";
 import { Router,ActivatedRoute,ParamMap } from '@angular/router';
 import { MdSnackBar, MdDialog } from "@angular/material";
 import { ConfirmationModalComponent } from "../../modals/confirmationModal/confirmationModal.component";
-
+import {NeedSave} from "../../../services/guards/needSaveGuard.service"
 import { RoomApiService } from "../../../services/api/roomApiService";
 import { Room } from "../../../../../../common/models/room";
 
@@ -12,9 +12,11 @@ import 'rxjs/add/operator/switchMap';
     selector: "room-form",
     templateUrl: "roomForm.component.html"
 })
-export class RoomFormComponent implements OnInit {
+export class RoomFormComponent implements OnInit,NeedSave {
     @Input() room: Room;
     @Input() readOnly: boolean;
+
+    @ViewChild('dataForm') dataForm;
 
     roomData: any;
     currentId: string;
@@ -35,17 +37,19 @@ export class RoomFormComponent implements OnInit {
         }
     }
 
-    create() {
-        this.roomApiService.create(this.roomData)
+    create():Promise<boolean> {
+        return this.roomApiService.create(this.roomData)
             .then(() => {
                 this.snackbar.open("Salle créée avec succès", "X", {
                     duration: 5000
                 });
                 this.router.navigate(["/rooms"]);
+                return true;
             }).catch((error) => {
                 this.snackbar.open("Impossible de créer la salle, erreur: " + error, "X", {
                     duration: 5000
                 });
+                return false;
             });
     }
 
@@ -89,6 +93,10 @@ export class RoomFormComponent implements OnInit {
         }
     }
 
+    needSave() : boolean {
+        return !this.dataForm.touched;
+    }
+
     ngOnInit() {
         if(!this.isAdmin()) {
             this.readOnly = true;
@@ -112,25 +120,28 @@ export class RoomFormComponent implements OnInit {
         }
     }
 
-    save() {
+    save():Promise<boolean> {
+        console.log(this.dataForm.touched);
         // check current state to determine, update or create
         if (this.currentId) {
-            this.update();
+            return this.update();
         } else {
-            this.create();
+            return this.create();
         }
     }
 
-    update() {
-        this.roomApiService.update(this.currentId, this.roomData)
+    update():Promise<boolean> {
+        return this.roomApiService.update(this.currentId, this.roomData)
             .then(() => {
                 this.snackbar.open("Salle mise à jour avec succès", "X", {
                     duration: 5000
                 });
+                return true;
             }).catch((error) => {
                 this.snackbar.open("Impossible de sauvegarder les données de la salle, erreur: " + error, "X", {
                     duration: 5000
                 });
+                return false;
             });
     }
 }

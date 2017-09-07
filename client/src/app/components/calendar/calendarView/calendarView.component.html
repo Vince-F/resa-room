@@ -1,5 +1,23 @@
-<div *ngFor="let week of calendarContent">
-    <div *ngFor="let day of week">
-        {{day.date.toDateString()}}
+<h3>{{getMonth()}} {{baseDate?.getFullYear()}}</h3>
+<div class="week-container" *ngFor="let week of calendarContent">
+    <div class="day-container" *ngFor="let day of week" >
+        {{getDayLabel(day?.date?.getDay())}} {{day?.date?.getDate()}}
+        <md-chip-list class="mat-chip-list-stacked reservation-container">
+            <md-chip *ngFor="let reservation of (day?.reservations ? day?.reservations.slice(0,2): [])"
+                selected="true"
+                color="{{reservation.color}}">
+              {{reservation.test}}
+            </md-chip>
+            <md-chip *ngIf="day?.reservations.length > 2" (click)="displayMore(day)"
+                selected="true"
+                color="primary">
+            {{day?.reservations.length - 2}} more...
+            </md-chip>
+        </md-chip-list>
+        <div class="more-area" *ngIf="day">
+            <button md-mini-fab color="primary" (click)="displayMore(day)">
+                <md-icon class="md-24" aria-label="More">add</md-icon>
+            </button>
+        </div>
     </div>
 </div>

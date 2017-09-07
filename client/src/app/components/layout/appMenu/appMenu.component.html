@@ -1,0 +1,39 @@
+<md-list>
+    <h3 md-subheader>Réservation</h3>
+    <md-list-item routerLink="/calendar" routerLinkActive="active-item" (click)="sidenav.close()">
+        <md-icon md-list-icon>event</md-icon>
+        <h4 md-line>Calendrier</h4>
+    </md-list-item>
+    <md-list-item routerLink="/reservations/accepted" routerLinkActive="active-item" (click)="sidenav.close()">
+        <md-icon md-list-icon>event_available</md-icon>
+        <h4 md-line>Mes réservartions acceptées</h4>
+    </md-list-item>
+    <md-list-item routerLink="/reservations/pending" routerLinkActive="active-item" (click)="sidenav.close()">
+        <md-icon md-list-icon>event_note</md-icon>
+        <h4 md-line>Mes réservartions en attente</h4>
+    </md-list-item>
+    <md-divider></md-divider>
+    <h3 md-subheader>Salles</h3>
+    <md-list-item routerLink="/rooms" routerLinkActive="active-item" (click)="sidenav.close()">
+        <md-icon md-list-icon>store</md-icon>
+        <h4 md-line>Salles disponibles</h4>
+    </md-list-item>
+    <md-divider></md-divider>
+    <h3 md-subheader *ngIf="isAdmin()">Administration</h3>
+    <md-list-item *ngIf="isAdmin()" routerLink="/admin/rooms" routerLinkActive="active-item" (click)="sidenav.close()">
+        <md-icon md-list-icon>store</md-icon>
+        <h4 md-line>Salles</h4>
+    </md-list-item>
+    <md-list-item *ngIf="isAdmin()" routerLink="/reservations/accepted" routerLinkActive="active-item" (click)="sidenav.close()">
+        <md-icon md-list-icon>event_available</md-icon>
+        <h4 md-line>Réservations acceptées</h4>
+    </md-list-item>
+    <md-list-item *ngIf="isAdmin()" routerLink="/reservations/pending" (click)="sidenav.close()">
+        <md-icon md-list-icon>event_note</md-icon>
+        <h4 md-line>Réservations en attente</h4>
+    </md-list-item>
+    <md-list-item *ngIf="isAdmin()" routerLink="/reservations/rejected" routerLinkActive="active-item" (click)="sidenav.close()">
+        <md-icon md-list-icon>event_busy</md-icon>
+        <h4 md-line>Réservations refusées</h4>
+    </md-list-item>
+</md-list>

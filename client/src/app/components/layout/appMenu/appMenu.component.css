@@ -1,0 +1,7 @@
+md-list-item {
+    cursor: pointer;
+}
+
+.active-item {
+    color:#3f51b5;
+}
