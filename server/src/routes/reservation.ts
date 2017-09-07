@@ -1,24 +1,29 @@
 import express = require("express");
 import {ReservationController} from "../controllers/reservationController";
 
-export let router = new express.Router();
+export let router:express.Router = express.Router();
 const apiCtrl = new ReservationController();
 
 // READ
 router.get("/",retrieveList);
 router.get("/:id",retrieveOneById);
-router.get("/byUser/:userId",retrieveListForUser);
 
 // CREATE
 router.post("/",createOne);
 
 // UPDATE
 router.put("/:id",updateOneById);
+router.put("/:id/accept",acceptReservation);
+router.put("/:id/decline",declineReservation);
 
 // DELETE
 router.delete("/:id",deleteOneById);
 
-function createOne(req,res) {
+function acceptReservation(req:express.Request,res:express.Response) {
+    res.send(500);
+}
+
+function createOne(req:express.Request,res:express.Response) {
     const data = req.body.data;
 
     apiCtrl.createReservation(data)
@@ -29,7 +34,12 @@ function createOne(req,res) {
         });
 } 
 
-function deleteOneById(req,res) {
+function declineReservation(req:express.Request,res:express.Response) {
+    res.send(500);
+}
+
+
+function deleteOneById(req:express.Request,res:express.Response) {
     const id = req.params.id;
 
     apiCtrl.deleteReservation(id)
@@ -40,8 +50,10 @@ function deleteOneById(req,res) {
         })
 }
 
-function retrieveList(req,res) {
-    apiCtrl.retrieveReservationList()
+function retrieveList(req:express.Request,res:express.Response) {
+    const filters = req.query;
+
+    apiCtrl.retrieveReservationList(filters)
         .then((reservations) => {
             res.send({success:true,result:reservations,count:reservations.length});
         }).catch((error) => {
@@ -49,18 +61,7 @@ function retrieveList(req,res) {
         });
 }
 
-function retrieveListForUser(req,res) {
-    const userId = req.params.userId;
-    
-    apiCtrl.retrieveReservationListForUser(userId)
-        .then((reservations) => {
-            res.send({success:true,result:reservations,count:reservations.length});
-        }).catch((error) => {
-            res.send({success:false,error:"Fail to retrieve reservations: " + error});
-        });
-}
-
-function retrieveOneById(req,res) {
+function retrieveOneById(req:express.Request,res:express.Response) {
     const id = req.params.id;
 
     apiCtrl.retrieveReservation(id)
@@ -71,7 +72,7 @@ function retrieveOneById(req,res) {
         });
 }
 
-function updateOneById(req,res) {
+function updateOneById(req:express.Request,res:express.Response) {
     const id = req.params.id;
     const data = req.body.data;
 

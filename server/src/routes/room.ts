@@ -1,7 +1,7 @@
 import express = require("express");
 import {RoomController} from "../controllers/roomController";
 
-export let router = new express.Router();
+export let router:express.Router = express.Router();
 const apiCtrl = new RoomController();
 
 // READ
@@ -17,7 +17,7 @@ router.put("/:id",updateOneById);
 // DELETE
 router.delete("/:id",deleteOneById);
 
-function createOne(req,res) {
+function createOne(req:express.Request,res:express.Response) {
     const data = req.body.data;
 
     apiCtrl.createRoom(data)
@@ -28,7 +28,7 @@ function createOne(req,res) {
         });
 } 
 
-function deleteOneById(req,res) {
+function deleteOneById(req:express.Request,res:express.Response) {
     const id = req.params.id;
 
     apiCtrl.deleteRoom(id)
@@ -39,7 +39,7 @@ function deleteOneById(req,res) {
         })
 }
 
-function retrieveList(req,res) {
+function retrieveList(req:express.Request,res:express.Response) {
     apiCtrl.retrieveRoomList()
         .then((rooms) => {
             res.send({success:true,result:rooms,count:rooms.length});
@@ -48,7 +48,7 @@ function retrieveList(req,res) {
         });
 }
 
-function retrieveOneById(req,res) {
+function retrieveOneById(req:express.Request,res:express.Response) {
     const id = req.params.id;
 
     apiCtrl.retrieveRoom(id)
@@ -59,7 +59,7 @@ function retrieveOneById(req,res) {
         });
 }
 
-function updateOneById(req,res) {
+function updateOneById(req:express.Request,res:express.Response) {
     const id = req.params.id;
     const data = req.body.data;
 

@@ -5,6 +5,8 @@ export class Reservation {
     beginDate:Date;
     endDate:Date;
     comment:string;
+    pending:boolean;
+    accepted?:boolean;
 
     constructor(data:any) {
         if(typeof data !== "object" || data === null) {

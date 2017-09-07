@@ -12,6 +12,8 @@ export class ReservationController {
             try {
                 data._id = Math.floor(Math.random() * 1000000000).toString(36);
                 let newReservation = new Reservation(data);
+                newReservation.pending = false;
+                newReservation.accepted = undefined;
                 this.testData.set(data._id,newReservation);
                 resolve(newReservation);
             } catch(error) {
@@ -30,19 +32,16 @@ export class ReservationController {
         });
     }
 
-    retrieveReservationList() : Promise<Array<Reservation>> {
+    retrieveReservationList(filter?:any) : Promise<Array<Reservation>> {
         return new Promise((resolve,reject) => {
-            resolve(Array.from(this.testData.values()));
+            resolve(Array.from(this.testData.values()).filter((entry) => {
+                let keep = true;
+                for(var key in filter) {
+                    keep = keep && (filter[key] === entry[key]);
+                }
+                return keep;
+            }));
         });
-    }
-
-    retrieveReservationListForUser(userId:string):Promise<Array<Reservation>> {
-        return this.retrieveReservationList()
-            .then((reservations) => {
-                return reservations.filter((elem) => {
-                    return elem.authorId === userId;
-                });
-            });
     }
 
     updateReservation(id:string,data:any):Promise<Reservation> {
