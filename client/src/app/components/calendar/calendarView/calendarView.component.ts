@@ -1,6 +1,7 @@
 import {Component,OnInit} from "@angular/core";
 import {MdDialog} from '@angular/material';
 import {DayDetailViewComponent} from "../dayDetailView/dayDetailView.component";
+import {Reservation} from "../../../../../../common/models/reservation";
 
 @Component( {
     selector:"calendar-view",
@@ -15,23 +16,21 @@ export class CalendarViewComponent implements OnInit {
     readonly days:Array<string> = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
 
     constructor(private dialog:MdDialog) {
-
+        this.baseDate = new Date();
     }
 
     computeDisplayedDays() {
         let calendarContent:Array<Array<any>> = [];
 
-        let now = this.baseDate = new Date();
-
-        let firstDayOfMonth = new Date();
+        let firstDayOfMonth = new Date(this.baseDate);
         firstDayOfMonth.setDate(1);
-        let lastDayOfMonth = new Date();
+        let lastDayOfMonth = new Date(this.baseDate);
         lastDayOfMonth.setDate(1);
-        lastDayOfMonth.setMonth(now.getMonth() + 1);
+        lastDayOfMonth.setMonth(this.baseDate.getMonth() + 1);
         lastDayOfMonth.setDate(0);
         lastDayOfMonth.setHours(23,59,59);
 
-        let movingDate = new Date();
+        let movingDate = new Date(this.baseDate);
         movingDate.setDate(1);
         movingDate.setHours(0,0,0);
         let row = 0;
@@ -45,7 +44,16 @@ export class CalendarViewComponent implements OnInit {
             }
             movingDate.setDate(movingDate.getDate()+1);
         }
+        // to have the last week of month appearing complete on calendar
+        const lastIndex = calendarContent.length - 1;
+        for(let i = calendarContent[lastIndex].length; i<7; i++) {
+            calendarContent[lastIndex][i] = null;
+        }
         return calendarContent;
+    }
+
+    displayReservation(reservation:Reservation) {
+        console.log(reservation);
     }
 
     displayMore(day:any) {
@@ -65,8 +73,17 @@ export class CalendarViewComponent implements OnInit {
         return this.months[this.baseDate.getMonth()];
     }
 
+    goToNextMonth() {
+        this.baseDate.setMonth(this.baseDate.getMonth() + 1);
+        this.calendarContent = this.computeDisplayedDays();
+    }
+
+    goToPreviousMonth() {
+        this.baseDate.setMonth(this.baseDate.getMonth() - 1);
+        this.calendarContent = this.computeDisplayedDays();
+    }
+
     ngOnInit() {
         this.calendarContent = this.computeDisplayedDays();
-        console.log(this.calendarContent);
     }
 }

@@ -12,17 +12,17 @@
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true,
     "alwaysStrict": true,
-    "outDir": "dist/"
+    "outDir": "lib/"
   },
   "include": [
-        "src/**/*"
+      "src/**/*"
   ],
   "exclude": [
     "node_modules",
     "typings",
     "typings/browser",
     "typings/browser.d.ts",
-    "dist",
+    "lib",
     "examples"
   ]
 }

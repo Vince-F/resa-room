@@ -1,0 +1,15 @@
+{
+  "name": "resa-room-common",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/.bin/tsc"
+  },
+  "author": "Vincent Francolin",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "typescript": "^2.9.2"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "resa-room",
+  "version": "1.0.0",
+  "description": "A web app to manage and book your meeting rooms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildCommon":"cd common && npm run build",
+    "buildServer": "cd server && npm run build",
+    "buildWebClient": "",
+    "buildDesktopClient": "",
+    "buildMobileClient": "",
+    "buildAll": "npm run buildCommon && npm run buildServer && npm run buildWebClient && npm run buildDesktopClient && npm run buildMobileClient"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://D4rkWhat3ver@bitbucket.org/D4rkWhat3ver/roomreservation.git"
+  },
+  "author": "Vincent Francolin",
+  "license": "AGPL-3.0",
+  "homepage": "https://bitbucket.org/D4rkWhat3ver/roomreservation#readme"
+}

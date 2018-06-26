@@ -4,17 +4,27 @@
   "description": "The application server for the RoomReservation application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/tsc",
+    "start": "node lib/server/src/index"
   },
   "author": "Vincent Francolin",
   "license": "AGPL-3.0",
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "apicore": "github:vince-f/apicore",
+    "body-parser": "^1.18.3",
     "express": "^4.15.3",
-    "express-session": "^1.15.5"
+    "express-session": "^1.15.6",
+    "mongoose": "^5.1.2",
+    "resa-room-common": "file:///C:\\Users\\Vince\\Documents\\dev_web\\roomReservation\\common",
+    "usr-mgt": "github:vince-f/usr-mgt#0.2-dev"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.17.0",
     "@types/express": "^4.0.37",
-    "@types/node": "^8.0.27"
+    "@types/express-session": "^1.15.10",
+    "@types/mongoose": "^5.0.14",
+    "@types/node": "^8.0.27",
+    "typescript": "^2.9.2"
   }
 }

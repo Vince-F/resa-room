@@ -1,3 +1,5 @@
+import {ReservationStatus} from "./reservationStatus";
+
 export class Reservation {
     _id:string;
     authorId:string;
@@ -5,8 +7,7 @@ export class Reservation {
     beginDate:Date;
     endDate:Date;
     comment:string;
-    pending:boolean;
-    accepted?:boolean;
+    status:ReservationStatus
 
     constructor(data:any) {
         if(typeof data !== "object" || data === null) {

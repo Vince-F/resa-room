@@ -25,8 +25,10 @@ export class ReservationApiService extends BasicApiService {
             .then(this.onSuccess);
     }
 
-    retrieveList() {
-        return this.http.get(this.prefixUrl + "/")
+    retrieveList(filter:any) {
+        return this.http.get(this.prefixUrl + "/",{
+            search:filter
+        })
             .toPromise()
             .then(this.onSuccess);
     }

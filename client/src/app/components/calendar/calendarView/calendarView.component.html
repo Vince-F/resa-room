@@ -1,14 +1,22 @@
-<h3>{{getMonth()}} {{baseDate?.getFullYear()}}</h3>
+<div class="calendar-toolbar">
+    <h3>{{getMonth()}} {{baseDate?.getFullYear()}}</h3>
+    <button md-button (click)="goToPreviousMonth()">
+        <md-icon>chevron_left</md-icon>
+    </button>
+    <button md-button (click)="goToNextMonth()">
+        <md-icon>chevron_right</md-icon>
+    </button>
+</div>
 <div class="week-container" *ngFor="let week of calendarContent">
     <div class="day-container" *ngFor="let day of week" >
         {{getDayLabel(day?.date?.getDay())}} {{day?.date?.getDate()}}
         <md-chip-list class="mat-chip-list-stacked reservation-container">
             <md-chip *ngFor="let reservation of (day?.reservations ? day?.reservations.slice(0,2): [])"
                 selected="true"
-                color="{{reservation.color}}">
+                color="{{reservation.color}}" (click)="displayReservation(reservation)">
               {{reservation.test}}
             </md-chip>
-            <md-chip *ngIf="day?.reservations.length > 2" (click)="displayMore(day)"
+            <md-chip class="more-action" *ngIf="day?.reservations?.length > 2" (click)="displayMore(day)"
                 selected="true"
                 color="primary">
             {{day?.reservations.length - 2}} more...
