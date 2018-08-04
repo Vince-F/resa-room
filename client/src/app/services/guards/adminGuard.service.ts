@@ -1,20 +1,31 @@
 import { Injectable } from '@angular/core';
-import { CanActivate,CanActivateChild } from '@angular/router';
+import { CanActivate,CanActivateChild,Router } from '@angular/router';
 
 import {UserSessionService} from "../user/userSession.service"
 
 @Injectable()
 export class AdminGuard implements CanActivate,CanActivateChild {
     
-    constructor(private userSessionService:UserSessionService) {
+    constructor(private userSessionService:UserSessionService,
+                private router:Router) {
 
     }
     
     canActivate() {
-        return this.userSessionService.isAdmin();
+        if(this.userSessionService.isAdmin()) {
+            return true;
+        } else {
+            this.router.navigate(["/home"]);
+            return false;
+        }
     }
 
     canActivateChild() {
-        return this.userSessionService.isAdmin();
+        if(this.userSessionService.isAdmin()) {
+            return true;
+        } else {
+            this.router.navigate(["/home"]);
+            return false;
+        }
     }
 }

@@ -1,14 +1,14 @@
 import {Component,Input} from "@angular/core";
-import {MdSidenav} from "@angular/material";
+import {MatSidenav} from "@angular/material";
 import {UserSessionService} from "../../../services/user/userSession.service";
 
 @Component( {
     selector:"app-menu",
-    templateUrl:"appMenu.component.html",
-    styleUrls:["appMenu.component.css"]
+    templateUrl:"./appMenu.component.html",
+    styleUrls:["./appMenu.component.css"]
 })
 export class AppMenuComponent {
-    @Input() sidenav:MdSidenav;
+    @Input() sidenav:MatSidenav;
 
     constructor(private userSessionService:UserSessionService) {
 

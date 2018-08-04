@@ -2,11 +2,11 @@
   "name": "roomreservation-server",
   "version": "0.1.0",
   "description": "The application server for the RoomReservation application",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/tsc",
-    "start": "node lib/server/src/index"
+    "start": "node lib/index"
   },
   "author": "Vincent Francolin",
   "license": "AGPL-3.0",
@@ -16,7 +16,8 @@
     "express": "^4.15.3",
     "express-session": "^1.15.6",
     "mongoose": "^5.1.2",
-    "resa-room-common": "file:///C:\\Users\\Vince\\Documents\\dev_web\\roomReservation\\common",
+    "resa-room-common": "file:../common",
+    "resaroom-client": "file:../client",
     "usr-mgt": "github:vince-f/usr-mgt#0.2-dev"
   },
   "devDependencies": {

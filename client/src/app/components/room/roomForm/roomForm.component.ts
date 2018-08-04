@@ -1,18 +1,18 @@
-import { Component, OnInit, Input,ViewChild } from "@angular/core";
-import { Router,ActivatedRoute,ParamMap } from '@angular/router';
-import { MdSnackBar, MdDialog } from "@angular/material";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { MatSnackBar, MatDialog } from "@angular/material";
 import { ConfirmationModalComponent } from "../../modals/confirmationModal/confirmationModal.component";
-import {NeedSave} from "../../../services/guards/needSaveGuard.service"
+import { NeedSave } from "../../../services/guards/needSaveGuard.service"
 import { RoomApiService } from "../../../services/api/roomApiService";
-import { Room } from "../../../../../../common/models/room";
-
-import 'rxjs/add/operator/switchMap';
+import { Room } from "resa-room-common/lib/room";
+import { switchMap, map } from 'rxjs/operators';
 
 @Component({
     selector: "room-form",
-    templateUrl: "roomForm.component.html"
+    templateUrl: "roomForm.component.html",
+    styleUrls:["roomForm.component.css"]
 })
-export class RoomFormComponent implements OnInit,NeedSave {
+export class RoomFormComponent implements OnInit, NeedSave {
     @Input() room: Room;
     @Input() readOnly: boolean;
 
@@ -23,26 +23,27 @@ export class RoomFormComponent implements OnInit,NeedSave {
 
     constructor(private roomApiService: RoomApiService,
         private router: Router,
-        private activatedRoute:ActivatedRoute,
-        private snackbar: MdSnackBar,
-        private dialog: MdDialog) {
+        private activatedRoute: ActivatedRoute,
+        private snackbar: MatSnackBar,
+        private dialog: MatDialog) {
 
     }
 
     goBackToList() {
-        if(this.isAdmin()) {
+        if (this.isAdmin()) {
             this.router.navigate(["/admin/rooms"]);
         } else {
             this.router.navigate(["/rooms"]);
         }
     }
 
-    create():Promise<boolean> {
+    create(): Promise<boolean> {
         return this.roomApiService.create(this.roomData)
             .then(() => {
                 this.snackbar.open("Salle créée avec succès", "X", {
                     duration: 5000
                 });
+                this.dataForm.touched = false;
                 this.router.navigate(["/rooms"]);
                 return true;
             }).catch((error) => {
@@ -72,8 +73,8 @@ export class RoomFormComponent implements OnInit,NeedSave {
         });
     }
 
-    isAdmin():boolean {
-        return this.router.url === "/admin/room/new";
+    isAdmin(): boolean {
+        return this.router.url.indexOf("/admin/room/") === 0;
     }
 
     isNewRoom(): boolean {
@@ -93,34 +94,32 @@ export class RoomFormComponent implements OnInit,NeedSave {
         }
     }
 
-    needSave() : boolean {
-        return !this.dataForm.touched;
+    needSave(): boolean {
+        return this.dataForm.touched;
     }
 
     ngOnInit() {
-        if(!this.isAdmin()) {
+        if (!this.isAdmin()) {
             this.readOnly = true;
+        } else {
+            this.readOnly = false;
         }
 
-        if (this.router.url === "/room/new") {
+        if (this.router.url === "/admin/room/new") {
             this.roomData = {};
         } else if (this.room) {
             this.roomData = this.room;
         } else {
-            this.activatedRoute.paramMap
-                .switchMap((param) => {
+            this.activatedRoute.paramMap.pipe(
+                switchMap((param) => {
                     this.currentId = param.get("id");
                     return this.roomApiService.retrieve(param.get("id"));
-                }).subscribe((room:Room) => this.roomData = room);
-            // load data
-            this.roomData = <Room>{
-                _id: "test",
-                name: "TestRoom",
-            }
+                })
+            ).subscribe(room => this.roomData = room);
         }
     }
 
-    save():Promise<boolean> {
+    save(): Promise<boolean> {
         console.log(this.dataForm.touched);
         // check current state to determine, update or create
         if (this.currentId) {
@@ -130,12 +129,13 @@ export class RoomFormComponent implements OnInit,NeedSave {
         }
     }
 
-    update():Promise<boolean> {
+    update(): Promise<boolean> {
         return this.roomApiService.update(this.currentId, this.roomData)
             .then(() => {
                 this.snackbar.open("Salle mise à jour avec succès", "X", {
                     duration: 5000
                 });
+                this.dataForm.touched = false;
                 return true;
             }).catch((error) => {
                 this.snackbar.open("Impossible de sauvegarder les données de la salle, erreur: " + error, "X", {

@@ -3,8 +3,6 @@ import { Headers, Http } from '@angular/http';
 
 import {BasicApiService} from "./basicApiService";
 
-import 'rxjs/add/operator/toPromise';
-
 @Injectable()
 export class RoomApiService extends BasicApiService {
     private prefixUrl:string = "/api/room";

@@ -1,26 +1,30 @@
-<md-card class="login-card">
-    <md-card-header>
-        <md-card-title>
-            Room Reservation
-        </md-card-title>
-    </md-card-header>
-    <md-card-content>
+<mat-card class="login-card">
+    <mat-card-header>
+        <mat-card-title>
+            <h1>RESAROOM</h1>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
         <form>
             <div>
-                <md-input-container class="full-width">
-                    <input mdInput placeholder="Login" name="login" type="text" />
-                </md-input-container>
+                <mat-form-field class="full-width">
+                    <input matInput [(ngModel)]="login" placeholder="Login" name="login" type="text" />
+                </mat-form-field>
             </div>
             <div>
-                <md-input-container class="full-width">
-                    <input mdInput placeholder="Password" name="password" type="password" />
-                </md-input-container>
+                <mat-form-field class="full-width">
+                    <input matInput [(ngModel)]="password" placeholder="Password" name="password" type="password" />
+                </mat-form-field>
             </div>
         </form>
-    </md-card-content>
-    <md-card-actions>
-        <button (click)="connect()" color="primary" md-raised-button>CONNECT</button>
-        <button (click)="debugConnectAsUser()" md-raised-button>Connect as user</button>
-        <button (click)="debugConnectAsAdmin()" md-raised-button>Connect as admin</button>
-    </md-card-actions>
-</md-card>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="other-actions">
+            <button (click)="debugConnectAsUser()" mat-raised-button>Password forgotten?</button>
+        </div>
+        <div class="spacer"></div>
+        <div class="main-actions"></div>
+        <button (click)="connect()" color="primary" mat-raised-button>CONNECT</button>
+       
+    </mat-card-actions>
+</mat-card>

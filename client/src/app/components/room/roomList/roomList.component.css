@@ -1,0 +1,39 @@
+table {
+    width: 100%;
+}
+
+.header-container {
+    display: flex;
+}
+
+.title-area, 
+::ng-deep .mat-card-header-text {
+    flex:1;
+}
+
+.toolbox-area {
+    flex:0;
+    display: flex;
+}
+
+.toolbox-area mat-icon {
+    flex: 1;
+}
+
+.table-container table {
+    table-layout: fixed;
+}
+
+.small-col {
+    width: 56px;
+}
+
+.toolbox-area .mat-button,
+.controls-col .mat-button {
+    min-width: 56px;
+}
+
+.controls-col {
+    width: 128px;
+    white-space: nowrap;
+}

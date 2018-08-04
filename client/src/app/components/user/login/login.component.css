@@ -1,0 +1,34 @@
+mat-card.login-card {
+    width: 400px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.mat-card-header-text {
+    margin: auto!important;
+}
+
+.mat-card.login-card>:first-child {
+    margin-top: -24px;
+}
+
+mat-card-header {
+    background: #3f51b5;
+    color: rgba(255,255,255,0.88);
+    /* text-align: center; */
+    margin: -24px -24px 0;
+}
+
+mat-card-actions {
+    display: flex;
+}
+
+mat-card-actions .other-actions,
+mat-card-actions .main-actions {
+    flex:0;
+}
+
+mat-card-actions .spacer {
+    flex:1;
+}
+

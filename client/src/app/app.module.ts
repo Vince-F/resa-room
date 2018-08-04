@@ -1,77 +1,56 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-import { RouterModule, Routes } from '@angular/router';
-
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
-import { MdButtonModule, MdToolbarModule, MdIconModule, MdSidenavModule, MdListModule, MdInputModule, MdTableModule, MdSnackBarModule, MdCheckboxModule, MdDialogModule, MdDatepickerModule, MdNativeDateModule, MdSelectModule, MdCardModule, MdChipsModule } from "@angular/material";
-import { CdkTableModule } from "@angular/cdk";
-
-import { LoginComponent } from "./components/user/login/login.component";
-
-import { RoomFormComponent } from "./components/room/roomForm/roomForm.component";
-import { RoomListComponent } from "./components/room/roomList/roomList.component";
-
-import { ReservationFormComponent } from "./components/reservation/reservationForm/reservationForm.component";
-import { ReservationListComponent } from "./components/reservation/reservationList/reservationList.component";
-
-import { ConfirmationModalComponent } from "./components/modals/confirmationModal/confirmationModal.component";
-
 import { HttpModule } from '@angular/http';
-
-import { AppMenuComponent } from "./components/layout/appMenu/appMenu.component";
-
-import { RoomApiService } from "./services/api/roomApiService";
-import { ReservationApiService } from "./services/api/reservationApiService";
-
-import { CalendarViewComponent } from "./components/calendar/calendarView/calendarView.component";
-import { DayDetailViewComponent } from "./components/calendar/dayDetailView/dayDetailView.component"
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from './app.component';
 
-import { AppRoutingModule } from './app-routing.module';
+import {CdkTableModule} from '@angular/cdk/table';
+import { MatToolbarModule, MatListModule, MatIconModule, MatSidenavModule, MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatTableModule,MatSortModule,MatCheckboxModule,MatDialogModule  } from "@angular/material";
 
-import 'hammerjs';
+import { AppRoutingModule } from "./app-routing.module";
 
-import { UserSessionService } from "./services/user/userSession.service"
+// services
+import { UserSessionService } from "./services/user/userSession.service";
+import { AuthenticationGuard } from "./services/guards/authenticationGuard.service";
+import {AdminGuard} from "./services/guards/adminGuard.service";
+import { NeedSaveGuard } from "./services/guards/needSaveGuard.service";
 
-// guards
-import { AdminGuard } from "./services/guards/adminGuard.service"
-import { AuthenticationGuard } from "./services/guards/authenticationGuard.service"
-import { NeedSaveGuard } from "./services/guards/needSaveGuard.service"
+// api
+import { RoomApiService } from './services/api/roomApiService';
+
+// components
+import { LoginComponent } from "./components/user/login/login.component";
+import { AppMenuComponent } from "./components/layout/appMenu/appMenu.component";
+import { HomeComponent } from './components/layout/home/home.component';
+import {RoomListComponent} from "./components/room/roomList/roomList.component";
+import { ConfirmationModalComponent } from "./components/modals/confirmationModal/confirmationModal.component";
+import { RoomFormComponent } from './components/room/roomForm/roomForm.component';
+import { RoomViewComponent } from './components/room/roomView/roomView.component';
+
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        AppMenuComponent,
-        CalendarViewComponent,
-        RoomFormComponent,
-        RoomListComponent,
-        ReservationFormComponent,
-        ReservationListComponent,
-        ConfirmationModalComponent,
-        DayDetailViewComponent,
-        LoginComponent
-    ],
-    entryComponents: [
-        ConfirmationModalComponent,
-        DayDetailViewComponent
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        CdkTableModule,
-        MdTableModule, MdButtonModule, MdToolbarModule, MdIconModule, MdSidenavModule, MdListModule, MdInputModule, MdSnackBarModule, MdCheckboxModule, MdDialogModule, MdDatepickerModule, MdNativeDateModule, MdSelectModule, MdCardModule, MdChipsModule
-    ],
-    providers: [
-        ReservationApiService, RoomApiService,
-        UserSessionService, AdminGuard, AuthenticationGuard, NeedSaveGuard
-    ],
-    bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		AppMenuComponent,
+		LoginComponent,
+		ConfirmationModalComponent,
+		HomeComponent,
+		RoomListComponent, RoomFormComponent, RoomViewComponent
+	],
+	imports: [
+		AppRoutingModule,
+		BrowserModule, BrowserAnimationsModule,
+		FormsModule, HttpModule,
+		CdkTableModule,
+		MatToolbarModule, MatListModule, MatIconModule, MatSidenavModule, MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule,
+		MatTableModule,MatSortModule,MatCheckboxModule,MatDialogModule
+	],
+	providers: [
+		/*ReservationApiService,*/ RoomApiService,
+		UserSessionService, AdminGuard, AuthenticationGuard, NeedSaveGuard
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

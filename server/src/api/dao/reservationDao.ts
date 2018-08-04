@@ -73,6 +73,13 @@ export class ReservationDao extends AbstractDao implements EntityDao {
             });
     }
 
+    update(id:string, data:ReservationDao) {
+        return ReservationDao.dbModel.findByIdAndUpdate(id,data)
+            .then((result) => {
+                return ReservationDao.createFromDocumentInstance(result);
+            })
+    }
+
     delete(id: string) {
         return ReservationDao.dbModel.findByIdAndRemove(id)
             .then(() => {

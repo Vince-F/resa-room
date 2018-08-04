@@ -1,21 +1,30 @@
 import {Component} from "@angular/core";
-import {Router} from "@angular/router";
-import {MdSnackBar} from "@angular/material";
+import {MatSnackBar} from "@angular/material";
+import { Router } from '@angular/router';
 import {UserSessionService} from "../../../services/user/userSession.service";
 
 @Component( {
     selector:"login",
-    templateUrl:"login.component.html",
-    styles:["login.component.css"]
+    templateUrl:"./login.component.html",
+    styleUrls:["./login.component.css"]
 })
 export class LoginComponent {
+    login:string;
+    password:string;
 
-    constructor(private userSessionService:UserSessionService) {
+    constructor(private userSessionService:UserSessionService,
+                private snackBar:MatSnackBar,
+                private router:Router) {
 
     }
 
     connect() {
-
+        this.userSessionService.connect(this.login,this.password)
+            .then(() => {
+                this.router.navigate(["/home"])
+            }).catch((response) => {   
+                this.snackBar.open("Fail to connect: " + response);
+            });
     }
 
     debugConnectAsUser() {

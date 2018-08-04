@@ -1,19 +1,25 @@
 import { EntityDao } from "apicore/lib";
 
-export abstract class AbstractDao implements EntityDao{
-    protected daoInstance:any;
+export abstract class AbstractDao implements EntityDao {
+    protected daoInstance: any;
 
     save() {
-        return this.daoInstance.save()
-            .then(() => {
-                return this;
-            });
+        if (this.daoInstance._id) {
+            return this.update(this.daoInstance._id,this.daoInstance);
+        } else {
+            return this.daoInstance.save()
+                .then(() => {
+                    return this;
+                });
+        }
     }
 
-    abstract retrieve(id:string):Promise<AbstractDao>;
+    abstract retrieve(id: string): Promise<AbstractDao>;
 
-    abstract retrieveAll():Promise<Array<AbstractDao>>;
+    abstract retrieveAll(): Promise<Array<AbstractDao>>;
 
-    abstract delete(id:string):Promise<void>;
-    
+    abstract update(id:string, daoInstance:any): Promise<AbstractDao>;
+
+    abstract delete(id: string): Promise<void>;
+
 }

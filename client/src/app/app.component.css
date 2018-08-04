@@ -1,7 +1,24 @@
-.spacer {
-  flex: 1 1 auto;
+mat-toolbar-row {
+    display: flex;
+}
+
+mat-toolbar-row .toolbar-spacer {
+    flex:1;
+}
+
+mat-sidenav {
+    border-right: solid 1px rgba(0,0,0,0.18);
+}
+
+mat-sidenav-container {
+    height: calc(100% - 64px);
+}
+
+mat-sidenav-content {
+    padding: 24px;
 }
 
 .toolbar-icon {
-  padding: 0 16px;
+    margin-right:8px;
+    cursor: pointer;
 }

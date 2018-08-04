@@ -4,6 +4,8 @@ import expressSession = require("express-session");
 import { router } from "./api/routes/index";
 import { DatabaseController } from "./core/controllers/databaseController";
 import { UserManagementApi } from "usr-mgt";
+import path = require('path');
+import { config } from "./config";
 
 const app = express();
 
@@ -14,18 +16,25 @@ app.use(expressSession({
     saveUninitialized: false
 }));
 
-let dbCtrl = new DatabaseController("mongodb://localhost/resaroomdb");
+let dbCtrl = new DatabaseController(config.databases.data.host);
 dbCtrl.connect({})
     .then(() => {
-        UserManagementApi.instantiateApiAndGetRouters({ database: { url: "mongodb://localhost/resaroomdb", tableName: "AppUsers" } })
+        UserManagementApi.instantiateApiAndGetRouters({ database: { url: config.databases.user.host, tableName: "AppUsers" } })
             .then((usrApiRouters) => {
                 app.use("/api", router);
                 app.use("/api/v1", router);
                 app.use("/auth", usrApiRouters.authenticationRouter);
                 app.use("/api/user", usrApiRouters.userApiRouter);
                 app.use("/api/v1/user", usrApiRouters.userApiRouter);
-
-                app.listen(3000, () => {
+                app.use(express.static(__dirname + "/../node_modules/resaroom-client/dist/"));
+                app.get('/*', function ( req, res ) {
+                    console.log('All');
+                    res
+                        .status( 200 )
+                        .set( { 'content-type': 'text/html; charset=utf-8' } )
+                        .sendfile( path.resolve(__dirname + "/../node_modules/resaroom-client/dist/index.html"));
+                });
+                app.listen(config.server.port, () => {
                     console.log("Server is ready");
                 });
             }).catch((error) => {

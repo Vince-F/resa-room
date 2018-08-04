@@ -1,14 +1,24 @@
 import { Component } from '@angular/core';
+import {UserSessionService} from "./services/user/userSession.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+	menuOpened: boolean;
+	title = 'app';
 
-  isAdmin() {
-    return true;
-  }
+	constructor(private userSessionService:UserSessionService) {
+
+	}
+
+	toggleMenu() {
+		this.menuOpened = !this.menuOpened;
+	}
+
+	isUserConnected() {
+		return this.userSessionService.isConnected();
+	}
 }

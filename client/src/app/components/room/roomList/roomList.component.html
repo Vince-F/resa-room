@@ -1,53 +1,55 @@
-<div class="header-container">
-    <div class="title-area">Room list</div>
-    <div class="toolbox-area">
-        <button type="button" *ngIf="isAdmin()" md-button (click)="addRoom()">
-            <md-icon>add</md-icon>
-        </button>
-        <button type="button" *ngIf="isAdmin()" md-button (click)="deleteRooms()">
-            <md-icon>delete</md-icon>
-        </button>
-    </div>
-</div>
-<div class="table-container">
-    <md-table #table [dataSource]="listSource" mdSort>
+<mat-card>
+    <mat-card-header class="header-container">
+        <mat-card-title class="title-area"><h1>Room list</h1></mat-card-title>
+        <div class="toolbox-area">
+            <button type="button" *ngIf="isAdmin()" mat-button (click)="addRoom()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button type="button" *ngIf="isAdmin()" mat-button (click)="deleteRooms()">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </mat-card-header>
+    <mat-card-content class="table-container">
+        <table mat-table #table [dataSource]="listSource" class="mat-elevation-z1">
 
-        <ng-container cdkColumnDef="selection">
-            <md-header-cell *cdkHeaderCellDef class="small-col" > <md-checkbox></md-checkbox> </md-header-cell>
-            <md-cell *cdkCellDef="let row" class="small-col"> <md-checkbox></md-checkbox> </md-cell>
-        </ng-container>
+            <ng-container cdkColumnDef="selection">
+                <th mat-header-cell *cdkHeaderCellDef class="small-col" > <mat-checkbox></mat-checkbox> </th>
+                <td mat-cell *cdkCellDef="let row" class="small-col"> <mat-checkbox></mat-checkbox> </td>
+            </ng-container>
 
-        <ng-container cdkColumnDef="name">
-            <md-header-cell *cdkHeaderCellDef md-sort-header> Nom </md-header-cell>
-            <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
-        </ng-container>
+            <ng-container cdkColumnDef="name">
+                <th mat-header-cell *cdkHeaderCellDef class="standard-col"> Nom </th>
+                <td mat-cell *cdkCellDef="let row" class="standard-col"> {{row.name}} </td>
+            </ng-container>
 
-        <ng-container cdkColumnDef="capacity">
-            <md-header-cell *cdkHeaderCellDef md-sort-header> Capacité </md-header-cell>
-            <md-cell *cdkCellDef="let row"> {{row.capacity}} </md-cell>
-        </ng-container>
+            <ng-container cdkColumnDef="capacity">
+                <th mat-header-cell *cdkHeaderCellDef class="standard-col"> Capacité </th>
+                <td *cdkCellDef="let row" class="standard-col"> {{row.capacity}} </td>
+            </ng-container>
 
-        <ng-container cdkColumnDef="description">
-            <md-header-cell *cdkHeaderCellDef md-sort-header> Description </md-header-cell>
-            <md-cell *cdkCellDef="let row"> {{row.description}} </md-cell>
-        </ng-container>
+            <ng-container cdkColumnDef="description">
+                <th mat-header-cell *cdkHeaderCellDef class="standard-col"> Description </th>
+                <td *cdkCellDef="let row" class="standard-col"> {{row.description}} </td>
+            </ng-container>
 
-        <ng-container cdkColumnDef="controls">
-            <md-header-cell *cdkHeaderCellDef class="small-col" > <div class="controls-header"></div> </md-header-cell>
-            <md-cell *cdkCellDef="let row" class="small-col"> 
-                <button type="button" *ngIf="!isAdmin()" md-button (click)="displayRoom(row)">
-                    <md-icon>info</md-icon>
-                </button>
-                <button type="button" *ngIf="isAdmin()" md-button (click)="editRoom(row)">
-                    <md-icon >edit</md-icon>
-                </button>
-                <button type="button" *ngIf="isAdmin()" md-button (click)="deleteRoom(row)">
-                    <md-icon>delete</md-icon>
-                </button>
-            </md-cell>
-        </ng-container>
+            <ng-container cdkColumnDef="controls">
+                <th mat-header-cell *cdkHeaderCellDef class="controls-col" > <div class="controls-header"></div> </th>
+                <td mat-cell *cdkCellDef="let row" class="controls-col"> 
+                    <button type="button" *ngIf="!isAdmin()" mat-button (click)="displayRoom(row)">
+                        <mat-icon>info</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="isAdmin()" mat-button (click)="editRoom(row)">
+                        <mat-icon >edit</mat-icon>
+                    </button>
+                    <button type="button" *ngIf="isAdmin()" mat-button (click)="deleteRoom(row)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
 
-        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-        <md-row *cdkRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></md-row>
-    </md-table>
-</div>
+            <tr mat-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *cdkRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>

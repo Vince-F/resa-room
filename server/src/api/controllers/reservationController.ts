@@ -3,6 +3,7 @@ import { CrudApiController, EntityDao, ApiResponse } from "apicore";
 import { ReservationDao } from "../dao/reservationDao";
 import { ReservationApiAccessController } from "./reservationApiAccessController";
 import express = require("express");
+import { ReservationStatus } from "resa-room-common/lib/reservationStatus";
 
 export class ReservationController extends CrudApiController<ReservationDao> {
     constructor() {
@@ -37,12 +38,25 @@ export class ReservationController extends CrudApiController<ReservationDao> {
         }
     }
 
+    cancel(id:string,req:express.Request):Promise<ApiResponse> {
+        return this.retrieve(id,req)
+            .then((retrieveResponse) => {
+                let reservation = retrieveResponse.data as ReservationDao;
+                return this.permissionMgr.canExecuteAction(this.entityName,"cancel",
+                    req,reservation).then(() => {
+                        reservation.status = ReservationStatus.CANCELED;
+                        return this.update(id,reservation,req);
+                    });
+            })
+    }
+
     checkIfReservationIntersect(reservation1:Reservation,reservation2:Reservation) {
         return reservation1.roomId === reservation2.roomId &&
             (this.isDateContainedInReservation(reservation2,reservation1.beginDate) ||
             this.isDateContainedInReservation(reservation2,reservation1.endDate) || 
             this.isDateContainedInReservation(reservation1,reservation2.beginDate) ||
-            this.isDateContainedInReservation(reservation1,reservation2.endDate));    
+            this.isDateContainedInReservation(reservation1,reservation2.endDate)) &&
+            reservation1.status !== ReservationStatus.CANCELED && reservation2.status !== ReservationStatus.CANCELED;    
     }
 
     isDateContainedInReservation(reservation:Reservation,date:Date) {

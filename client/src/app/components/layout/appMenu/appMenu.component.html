@@ -1,39 +1,39 @@
-<md-list>
-    <h3 md-subheader>Réservation</h3>
-    <md-list-item routerLink="/calendar" routerLinkActive="active-item" (click)="sidenav.close()">
-        <md-icon md-list-icon>event</md-icon>
-        <h4 md-line>Calendrier</h4>
-    </md-list-item>
-    <md-list-item routerLink="/reservations/accepted" routerLinkActive="active-item" (click)="sidenav.close()">
-        <md-icon md-list-icon>event_available</md-icon>
-        <h4 md-line>Mes réservartions acceptées</h4>
-    </md-list-item>
-    <md-list-item routerLink="/reservations/pending" routerLinkActive="active-item" (click)="sidenav.close()">
-        <md-icon md-list-icon>event_note</md-icon>
-        <h4 md-line>Mes réservartions en attente</h4>
-    </md-list-item>
-    <md-divider></md-divider>
-    <h3 md-subheader>Salles</h3>
-    <md-list-item routerLink="/rooms" routerLinkActive="active-item" (click)="sidenav.close()">
-        <md-icon md-list-icon>store</md-icon>
-        <h4 md-line>Salles disponibles</h4>
-    </md-list-item>
-    <md-divider></md-divider>
-    <h3 md-subheader *ngIf="isAdmin()">Administration</h3>
-    <md-list-item *ngIf="isAdmin()" routerLink="/admin/rooms" routerLinkActive="active-item" (click)="sidenav.close()">
-        <md-icon md-list-icon>store</md-icon>
-        <h4 md-line>Salles</h4>
-    </md-list-item>
-    <md-list-item *ngIf="isAdmin()" routerLink="/reservations/accepted" routerLinkActive="active-item" (click)="sidenav.close()">
-        <md-icon md-list-icon>event_available</md-icon>
-        <h4 md-line>Réservations acceptées</h4>
-    </md-list-item>
-    <md-list-item *ngIf="isAdmin()" routerLink="/reservations/pending" (click)="sidenav.close()">
-        <md-icon md-list-icon>event_note</md-icon>
-        <h4 md-line>Réservations en attente</h4>
-    </md-list-item>
-    <md-list-item *ngIf="isAdmin()" routerLink="/reservations/rejected" routerLinkActive="active-item" (click)="sidenav.close()">
-        <md-icon md-list-icon>event_busy</md-icon>
-        <h4 md-line>Réservations refusées</h4>
-    </md-list-item>
-</md-list>
+<mat-list>
+    <h3 mat-subheader>Réservation</h3>
+    <mat-list-item routerLink="/calendar" routerLinkActive="active-item" (click)="sidenav.close()">
+        <mat-icon mat-list-icon>event</mat-icon>
+        <h4 mat-line>Calendrier</h4>
+    </mat-list-item>
+    <mat-list-item routerLink="/reservations/accepted" routerLinkActive="active-item" (click)="sidenav.close()">
+        <mat-icon mat-list-icon>event_available</mat-icon>
+        <h4 mat-line>Mes réservartions acceptées</h4>
+    </mat-list-item>
+    <mat-list-item routerLink="/reservations/pending" routerLinkActive="active-item" (click)="sidenav.close()">
+        <mat-icon mat-list-icon>event_note</mat-icon>
+        <h4 mat-line>Mes réservartions en attente</h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader>Salles</h3>
+    <mat-list-item routerLink="/rooms" routerLinkActive="active-item" (click)="sidenav.close()">
+        <mat-icon mat-list-icon>store</mat-icon>
+        <h4 mat-line>Salles disponibles</h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader *ngIf="isAdmin()">Administration</h3>
+    <mat-list-item *ngIf="isAdmin()" routerLink="/admin/rooms" routerLinkActive="active-item" (click)="sidenav.close()">
+        <mat-icon mat-list-icon>store</mat-icon>
+        <h4 mat-line>Salles</h4>
+    </mat-list-item>
+    <mat-list-item *ngIf="isAdmin()" routerLink="/reservations/accepted" routerLinkActive="active-item" (click)="sidenav.close()">
+        <mat-icon mat-list-icon>event_available</mat-icon>
+        <h4 mat-line>Réservations acceptées</h4>
+    </mat-list-item>
+    <mat-list-item *ngIf="isAdmin()" routerLink="/reservations/pending" (click)="sidenav.close()">
+        <mat-icon mat-list-icon>event_note</mat-icon>
+        <h4 mat-line>Réservations en attente</h4>
+    </mat-list-item>
+    <mat-list-item *ngIf="isAdmin()" routerLink="/reservations/rejected" routerLinkActive="active-item" (click)="sidenav.close()">
+        <mat-icon mat-list-icon>event_busy</mat-icon>
+        <h4 mat-line>Réservations refusées</h4>
+    </mat-list-item>
+</mat-list>

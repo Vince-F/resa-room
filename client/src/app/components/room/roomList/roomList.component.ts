@@ -1,27 +1,28 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router"
-import { MdSnackBar,MdDialog } from "@angular/material";
+import { MatSnackBar,MatDialog } from "@angular/material";
 import {ConfirmationModalComponent} from "../../modals/confirmationModal/confirmationModal.component";
 
-import { RoomDataSource } from "../../../dataSources/roomDataSource";
+//import { RoomDataSource } from "../../../dataSources/roomDataSource";
 import { RoomApiService } from "../../../services/api/roomApiService";
-import { Room } from "../../../../../../common/models/room";
+import { Room } from "resa-room-common/lib/room";
 
 
 @Component({
     selector: "room-list",
-    templateUrl: "roomList.component.html"
+    templateUrl: "roomList.component.html",
+    styleUrls:["roomList.component.css"]
 })
 export class RoomListComponent {
     displayedColumns = ["selection", "name", "capacity", "description", "controls"];
-    listSource: RoomDataSource;
+    listSource: Room[];
     selectedRooms: Room[];
 
     constructor(private router: Router,
         private roomApiService: RoomApiService,
-        private snackbar: MdSnackBar,
-        private dialog: MdDialog) {
-
+        private snackbar: MatSnackBar,
+        private dialog: MatDialog) {
+        this.listSource = [];
     }
 
     addRoom() {
@@ -65,7 +66,10 @@ export class RoomListComponent {
     }
 
     ngOnInit() {
-        this.listSource = new RoomDataSource();
+        this.roomApiService.retrieveList()
+            .then((data) => {
+                this.listSource = data;
+            });
     }
 
     selectRow() {

@@ -1,37 +1,37 @@
 <div class="header-container">
     
     <div class="title-area">
-        <button class="back-arrow" type="button" md-button (click)="goBackToList()">
-            <md-icon>arrow_back</md-icon>
+        <button class="back-arrow icon-button" type="button" mat-button (click)="goBackToList()">
+            <mat-icon>arrow_back</mat-icon>
         </button>
         Room
     </div>
     <div class="toolbox-area">
-        <button md-button *ngIf="isAdmin()" (click)="save()">
-            <md-icon>save</md-icon>
+        <button mat-button class="icon-button" *ngIf="isAdmin()" (click)="save()">
+            <mat-icon>save</mat-icon>
         </button>
-        <!-- <button md-button *ngIf="isNewRoom()" (click)="cancelCreation()">
-            <md-icon>undo</md-icon>
+        <!-- <button mat-button *ngIf="isNewRoom()" (click)="cancelCreation()">
+            <mat-icon>undo</mat-icon>
         </button>-->
-        <button md-button *ngIf="!isNewRoom() && isAdmin()" (click)="delete()">
-            <md-icon>delete</md-icon>
+        <button mat-button class="icon-button" *ngIf="!isNewRoom() && isAdmin()" (click)="delete()">
+            <mat-icon>delete</mat-icon>
         </button>
     </div>
 </div>
 <form #dataForm="ngForm" class="form-container">
     <div>
-        <md-input-container class="full-width">
-            <input [(ngModel)]="roomData.name" name="name" [disabled]="readOnly" mdInput placeholder="Nom">
-        </md-input-container>
+        <mat-form-field class="full-width">
+            <input [(ngModel)]="roomData.name" name="name" [disabled]="readOnly" matInput placeholder="Nom">
+        </mat-form-field>
     </div>
     <div>
-        <md-input-container class="full-width">
-            <input mdInput [(ngModel)]="roomData.capacity" name="capacity" [disabled]="readOnly" placeholder="Capacité maximale">
-        </md-input-container>
+        <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="roomData.capacity" type="number" min="1" name="capacity" [disabled]="readOnly" placeholder="Capacité maximale">
+        </mat-form-field>
     </div>
     <div>
-        <md-input-container class="full-width">
-            <textarea mdInput [(ngModel)]="roomData.description" name="capacity" [disabled]="readOnly" placeholder="Description"></textarea>
-        </md-input-container>
+        <mat-form-field class="full-width">
+            <textarea matInput [(ngModel)]="roomData.description" name="description" [disabled]="readOnly" placeholder="Description"></textarea>
+        </mat-form-field>
     </div>
 </form>

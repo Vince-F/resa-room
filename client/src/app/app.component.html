@@ -1,22 +1,18 @@
-<md-sidenav-container class="navigation-container">
-    <md-sidenav #sidenav class="menu-sidenav">
-        <app-menu [sidenav]="sidenav"></app-menu>
-    </md-sidenav>
-    
-    <div class="sidenav-content">
-        <md-toolbar color="primary">
-            <button type="button" md-button (click)="sidenav.open()">
-          <md-icon class="toolbar-icon">menu</md-icon>
-        </button>
-            <span>Room Reservation</span>
-            <span class="spacer"></span>
-            <md-icon class="toolbar-icon">notifications</md-icon>
-            <md-icon class="toolbar-icon">account_circle</md-icon>
-        </md-toolbar>
-        <div class="main-view">
-            <router-outlet></router-outlet>
-        </div>
+<mat-toolbar color="primary" *ngIf="isUserConnected()">
+	<mat-toolbar-row>
+		<mat-icon (click)="sidenav.toggle();" class="toolbar-icon">menu</mat-icon>
+		<span>ResaRoom</span>
+		<span class="toolbar-spacer"></span>
+		<mat-icon class="toolbar-icon">account_circle</mat-icon>
+	</mat-toolbar-row>
+</mat-toolbar>
 
-    </div>
+<mat-sidenav-container >
+	<mat-sidenav #sidenav mode="side">
+		<app-menu [sidenav]="sidenav"></app-menu>	
+	</mat-sidenav>
 
-</md-sidenav-container>
+	<mat-sidenav-content>
+		<router-outlet></router-outlet>
+	</mat-sidenav-content>
+</mat-sidenav-container>

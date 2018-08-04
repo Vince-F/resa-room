@@ -8,6 +8,7 @@ export class RoomDao extends AbstractDao implements EntityDao {
 
     constructor(data:Room) {
         super();
+        //load instead of create if there is an id and create if this iD doesn't exist
         this.daoInstance = new (RoomDao.getDbModel())(data);
     }
 
@@ -57,10 +58,26 @@ export class RoomDao extends AbstractDao implements EntityDao {
             });
     }
 
+    update(id:string, data:RoomDao) {
+        return RoomDao.dbModel.findByIdAndUpdate(id,data)
+            .then((result) => {
+                return data;
+            })
+    }
+
     delete(id: string) {
         return RoomDao.dbModel.findByIdAndRemove(id)
             .then(() => {
             });
+    }
+
+    toJSON() {
+        return {
+            _id:this._id,
+            name:this.name,
+            capacity:this.capacity,
+            description:this.description
+        };
     }
 
     private static createFromDocumentInstance(doc:mongoose.Document) {
@@ -83,7 +100,7 @@ export class RoomDao extends AbstractDao implements EntityDao {
                 required:true
             },
             capacity: {
-                type:String,
+                type:Number,
                 required:true
             },
             description: {

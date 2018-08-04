@@ -5,12 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+
+    "installCommon": "cd common && npm install",
+    "installServer": "cd server && npm install",
+    "installWebClient": "cd client && npm install",
+    "installDesktopClient": "",
+    "installMobileClient": "",
+    "installAll": "npm run installCommon && npm run installServer && npm run installWebClient",
+
     "buildCommon":"cd common && npm run build",
     "buildServer": "cd server && npm run build",
-    "buildWebClient": "",
+    "buildWebClient": "cd client && ng build",
     "buildDesktopClient": "",
     "buildMobileClient": "",
-    "buildAll": "npm run buildCommon && npm run buildServer && npm run buildWebClient && npm run buildDesktopClient && npm run buildMobileClient"
+    "buildAll": "npm run buildCommon && npm run buildServer && npm run buildWebClient"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import { RoomApiService } from "../../../services/api/roomApiService";
-import {Room} from "../../../../../../common/models/room";
+import {Room} from "resa-room-common/lib/room";
 
 
 @Component( {
