@@ -6,7 +6,8 @@ import {Reservation} from "resa-room-common/lib/reservation";
 
 @Component( {
     selector:"reservation-list",
-    templateUrl:"reservationList.component.html"
+    templateUrl:"reservationList.component.html",
+    styleUrls: ["../../../sharedStyles/table.css"]
 })
 export class ReservationListComponent {
     displayedColumns = ["roomName","authorName","beginDate","endDate"];

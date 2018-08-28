@@ -4,7 +4,7 @@
         <mat-icon mat-list-icon>event</mat-icon>
         <h4 mat-line>Calendrier</h4>
     </mat-list-item>
-    <mat-list-item routerLink="/reservations?onlyCurrentUser=1" routerLinkActive="active-item" (click)="sidenav.close()">
+    <mat-list-item routerLink="/reservations" [queryParams]="{onlyCurrentUser:1}" routerLinkActive="active-item" (click)="sidenav.close()">
         <mat-icon mat-list-icon>event_available</mat-icon>
         <h4 mat-line>Mes réservartions</h4>
     </mat-list-item>

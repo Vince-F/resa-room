@@ -1,0 +1,29 @@
+.header-container {
+    display:flex;
+}
+
+.header-container .title-area {
+    flex:1;
+}
+
+.header-container .toolbox-area {
+    flex:0;
+    display: flex;
+}
+
+.header-container .toolbox-area mat-icon {
+    flex:1;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.mat-button.icon-button {
+    min-width: 48px;
+    padding: 0 8px;
+}
+
+form {
+    padding-left: 48px;
+}

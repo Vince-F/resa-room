@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from './app.component';
 
 import {CdkTableModule} from '@angular/cdk/table';
-import { MatToolbarModule, MatListModule, MatIconModule, MatSidenavModule, MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatTableModule,MatSortModule,MatCheckboxModule,MatDialogModule, MatSelectModule  } from "@angular/material";
+import { MatToolbarModule, MatListModule, MatIconModule, MatSidenavModule, MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatTableModule,MatSortModule,MatCheckboxModule,MatDialogModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule  } from "@angular/material";
 
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -52,7 +52,7 @@ import { ReservationListComponent } from './components/reservation/reservationLi
 		FormsModule, HttpModule,
 		CdkTableModule,
 		MatToolbarModule, MatListModule, MatIconModule, MatSidenavModule, MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule,
-		MatTableModule,MatSortModule,MatCheckboxModule,MatDialogModule, MatSelectModule
+		MatTableModule,MatSortModule,MatCheckboxModule,MatDialogModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule
 	],
 	providers: [
 		ReservationApiService, RoomApiService,

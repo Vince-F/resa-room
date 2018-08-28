@@ -18,44 +18,51 @@
     </div>
 </div>
 <form class="form-container">
-    <div>
+    <mat-form-field>
         <mat-select placeholder="Salle" [(ngModel)]="selectedRoom" name="room">
             <mat-option *ngFor="let room of rooms" [value]="room._id">
                 {{room.name}}
             </mat-option>
         </mat-select>
-    </div>
-    <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Jour de la réservation">
-        <button matSuffix [matDatepickerToggle]="picker"></button>
     </mat-form-field>
-    <mat-datepicker #picker></mat-datepicker>
 
-    <input matInput [matDatepicker]="datePicker" name="departureDate" placeholder="Departure date">
-				<mat-datepicker-toggle matSuffix [for]="departurePicker"></mat-datepicker-toggle>
-				<mat-datepicker #departurePicker></mat-datepicker>
+    <mat-form-field>
+        <input matInput [matDatepicker]="datePicker" name="reservationDate" placeholder="Jour de la réservation">
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+    </mat-form-field>
     <!-- begin hour -->
     <div>
-        <mat-select placeholder="Heure(début)" [(ngModel)]="beginHour" name="beginHour">
-            <mat-option *ngFor="let hour of hours" [value]="hour">
-                {{hour}}
-            </mat-option>
-        </mat-select><mat-select placeholder="Minute(début)" [(ngModel)]="beginMinute" name="beginMinute">
-            <mat-option *ngFor="let minute of minutes" [value]="minute">
-                {{minute}}
-            </mat-option>
-        </mat-select>
+        <mat-form-field>
+            <mat-select placeholder="Heure(début)" [(ngModel)]="beginHour" name="beginHour">
+                <mat-option *ngFor="let hour of hours" [value]="hour">
+                    {{hour}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Minute(début)" [(ngModel)]="beginMinute" name="beginMinute">
+                <mat-option *ngFor="let minute of minutes" [value]="minute">
+                    {{minute}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
     <!-- end hour -->
     <div>
-        <mat-select placeholder="Heure(fin)" [(ngModel)]="endHour" name="endHour">
-            <mat-option *ngFor="let hour of hours" [value]="hour">
-                {{hour}}
-            </mat-option>
-        </mat-select><mat-select placeholder="Minute(fin)" [(ngModel)]="endMinute" name="endMinute">
-            <mat-option *ngFor="let minute of minutes" [value]="minute">
-                {{minute}}
-            </mat-option>
-        </mat-select>
+        <mat-form-field>
+            <mat-select placeholder="Heure(fin)" [(ngModel)]="endHour" name="endHour">
+                <mat-option *ngFor="let hour of hours" [value]="hour">
+                    {{hour}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Minute(fin)" [(ngModel)]="endMinute" name="endMinute">
+                <mat-option *ngFor="let minute of minutes" [value]="minute">
+                    {{minute}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
 </form>

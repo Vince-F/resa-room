@@ -6,7 +6,8 @@ import { Reservation } from "resa-room-common/lib/reservation";
 
 @Component({
     selector: "reservation-form",
-    templateUrl: "reservationForm.component.html"
+    templateUrl: "reservationForm.component.html",
+    styleUrls: ["../../../sharedStyles/form.css"]
 })
 export class ReservationFormComponent {
     currentId: string;
