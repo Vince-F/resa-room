@@ -72,8 +72,12 @@ export class RoomListComponent {
             });
     }
 
-    selectRow() {
-        
+    selectRow(selectedRoom:Room,keepSelection:boolean = false) {
+        if(keepSelection) {
+            this.selectedRooms.push(selectedRoom)
+        } else {
+            this.selectedRooms = [selectedRoom];
+        }
     }
 
 }

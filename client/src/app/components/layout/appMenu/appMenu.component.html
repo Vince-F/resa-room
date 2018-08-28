@@ -4,14 +4,14 @@
         <mat-icon mat-list-icon>event</mat-icon>
         <h4 mat-line>Calendrier</h4>
     </mat-list-item>
-    <mat-list-item routerLink="/reservations/accepted" routerLinkActive="active-item" (click)="sidenav.close()">
+    <mat-list-item routerLink="/reservations?onlyCurrentUser=1" routerLinkActive="active-item" (click)="sidenav.close()">
         <mat-icon mat-list-icon>event_available</mat-icon>
-        <h4 mat-line>Mes réservartions acceptées</h4>
+        <h4 mat-line>Mes réservartions</h4>
     </mat-list-item>
-    <mat-list-item routerLink="/reservations/pending" routerLinkActive="active-item" (click)="sidenav.close()">
+    <!-- <mat-list-item routerLink="/reservations/pending" routerLinkActive="active-item" (click)="sidenav.close()">
         <mat-icon mat-list-icon>event_note</mat-icon>
         <h4 mat-line>Mes réservartions en attente</h4>
-    </mat-list-item>
+    </mat-list-item> -->
     <mat-divider></mat-divider>
     <h3 mat-subheader>Salles</h3>
     <mat-list-item routerLink="/rooms" routerLinkActive="active-item" (click)="sidenav.close()">

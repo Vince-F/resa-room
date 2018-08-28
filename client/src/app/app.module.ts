@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from './app.component';
 
 import {CdkTableModule} from '@angular/cdk/table';
-import { MatToolbarModule, MatListModule, MatIconModule, MatSidenavModule, MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatTableModule,MatSortModule,MatCheckboxModule,MatDialogModule  } from "@angular/material";
+import { MatToolbarModule, MatListModule, MatIconModule, MatSidenavModule, MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatTableModule,MatSortModule,MatCheckboxModule,MatDialogModule, MatSelectModule  } from "@angular/material";
 
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -19,6 +19,7 @@ import { NeedSaveGuard } from "./services/guards/needSaveGuard.service";
 
 // api
 import { RoomApiService } from './services/api/roomApiService';
+import { ReservationApiService } from './services/api/reservationApiService';
 
 // components
 import { LoginComponent } from "./components/user/login/login.component";
@@ -28,6 +29,8 @@ import {RoomListComponent} from "./components/room/roomList/roomList.component";
 import { ConfirmationModalComponent } from "./components/modals/confirmationModal/confirmationModal.component";
 import { RoomFormComponent } from './components/room/roomForm/roomForm.component';
 import { RoomViewComponent } from './components/room/roomView/roomView.component';
+import { ReservationFormComponent } from './components/reservation/reservationForm/reservationForm.component';
+import { ReservationListComponent } from './components/reservation/reservationList/reservationList.component';
 
 
 @NgModule({
@@ -37,7 +40,11 @@ import { RoomViewComponent } from './components/room/roomView/roomView.component
 		LoginComponent,
 		ConfirmationModalComponent,
 		HomeComponent,
-		RoomListComponent, RoomFormComponent, RoomViewComponent
+		RoomListComponent, RoomFormComponent, RoomViewComponent,
+		ReservationFormComponent, ReservationListComponent
+	],
+	entryComponents: [
+		ConfirmationModalComponent
 	],
 	imports: [
 		AppRoutingModule,
@@ -45,10 +52,10 @@ import { RoomViewComponent } from './components/room/roomView/roomView.component
 		FormsModule, HttpModule,
 		CdkTableModule,
 		MatToolbarModule, MatListModule, MatIconModule, MatSidenavModule, MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule,
-		MatTableModule,MatSortModule,MatCheckboxModule,MatDialogModule
+		MatTableModule,MatSortModule,MatCheckboxModule,MatDialogModule, MatSelectModule
 	],
 	providers: [
-		/*ReservationApiService,*/ RoomApiService,
+		ReservationApiService, RoomApiService,
 		UserSessionService, AdminGuard, AuthenticationGuard, NeedSaveGuard
 	],
 	bootstrap: [AppComponent]

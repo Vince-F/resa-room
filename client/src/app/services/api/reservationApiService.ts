@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import {BasicApiService} from "./basicApiService";
 
-import 'rxjs/add/operator/toPromise';
+//import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ReservationApiService extends BasicApiService {
@@ -29,6 +29,12 @@ export class ReservationApiService extends BasicApiService {
         return this.http.get(this.prefixUrl + "/",{
             search:filter
         })
+            .toPromise()
+            .then(this.onSuccess);
+    }
+
+    cancel(id:string) {
+        return this.http.put(this.prefixUrl + "/" + id + "/cancel",{})
             .toPromise()
             .then(this.onSuccess);
     }

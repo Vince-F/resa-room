@@ -6,7 +6,7 @@ import { HomeComponent } from "./components/layout/home/home.component";
 import { RoomFormComponent } from "./components/room/roomForm/roomForm.component";
 import { RoomListComponent } from "./components/room/roomList/roomList.component";
 
-/*import { ReservationFormComponent } from "./components/reservation/reservationForm/reservationForm.component";
+import { ReservationFormComponent } from "./components/reservation/reservationForm/reservationForm.component";
 import { ReservationListComponent } from "./components/reservation/reservationList/reservationList.component";
 
 /*import {CalendarViewComponent } from "./components/calendar/calendarView/calendarView.component";
@@ -24,7 +24,8 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
     //{ path: 'reservations/:state', component: ReservationListComponent,canActivate:[AuthenticationGuard] },
-    //{ path: 'reservation/new', component: ReservationFormComponent,canActivate:[AuthenticationGuard] },
+    { path: 'reservations', component: ReservationListComponent,canActivate:[AuthenticationGuard] },
+    { path: 'reservation/new', component: ReservationFormComponent,canActivate:[AuthenticationGuard] },
     //{ path: 'reservation/:id',},
     //{ path: 'reservation/:id/edit', component: ReservationFormComponent,canActivate:[AuthenticationGuard] },
     { path: 'rooms', component: RoomListComponent,canActivate:[AuthenticationGuard] },

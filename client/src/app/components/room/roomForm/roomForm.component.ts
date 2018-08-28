@@ -43,7 +43,7 @@ export class RoomFormComponent implements OnInit, NeedSave {
                 this.snackbar.open("Salle créée avec succès", "X", {
                     duration: 5000
                 });
-                this.dataForm.touched = false;
+                this.dataForm.reset();
                 this.router.navigate(["/rooms"]);
                 return true;
             }).catch((error) => {
@@ -135,7 +135,7 @@ export class RoomFormComponent implements OnInit, NeedSave {
                 this.snackbar.open("Salle mise à jour avec succès", "X", {
                     duration: 5000
                 });
-                this.dataForm.touched = false;
+                this.dataForm.reset();
                 return true;
             }).catch((error) => {
                 this.snackbar.open("Impossible de sauvegarder les données de la salle, erreur: " + error, "X", {

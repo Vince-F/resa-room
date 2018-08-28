@@ -9,6 +9,7 @@ export class ReservationApiAccessController extends PermissionManager {
                 case "create":
                 case "read":
                     return Promise.resolve({ canAccess: true } as ApiAccessResponse);
+                case "cancel":
                 case "update":
                     if (req.session.userData.role === "Admin" || req.session.userData.login === data.authorId) {
                         return Promise.resolve({ canAccess: true } as ApiAccessResponse);

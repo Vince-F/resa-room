@@ -15,7 +15,7 @@
 
             <ng-container cdkColumnDef="selection">
                 <th mat-header-cell *cdkHeaderCellDef class="small-col" > <mat-checkbox></mat-checkbox> </th>
-                <td mat-cell *cdkCellDef="let row" class="small-col"> <mat-checkbox></mat-checkbox> </td>
+                <td mat-cell *cdkCellDef="let row" class="small-col" (click)="selectRow(row)"> <mat-checkbox></mat-checkbox> </td>
             </ng-container>
 
             <ng-container cdkColumnDef="name">

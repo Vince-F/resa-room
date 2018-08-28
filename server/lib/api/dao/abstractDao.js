@@ -1,19 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class AbstractDao {
+    constructor(data) {
+        this.new = (data && data._id === undefined);
+    }
     save() {
-        console.log("try to save", this.daoInstance);
-        if (this.daoInstance._id) {
-            console.log("update has been called");
-            return this.update(this.daoInstance._id, this.daoInstance);
-        }
-        else {
-            console.log("save has been called");
+        if (this.isNew()) {
             return this.daoInstance.save()
                 .then(() => {
                 return this;
             });
         }
+        else {
+            return this.update(this.daoInstance._id, this.daoInstance);
+        }
+    }
+    isNew() {
+        return this.new;
     }
 }
 exports.AbstractDao = AbstractDao;

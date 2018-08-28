@@ -14,7 +14,7 @@ export class Reservation {
             throw new TypeError("Cannot create reservation instance, data is undefined");
         }
         this._id = data._id;
-        if(typeof data.roomId !== "string") {
+        if(typeof data.roomId === "string") {
             this.roomId = data.roomId;
         }
     }

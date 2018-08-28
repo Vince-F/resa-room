@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const abstractDao_1 = require("./abstractDao");
 class RoomDao extends abstractDao_1.AbstractDao {
     constructor(data) {
-        super();
+        super(data);
         this.daoInstance = new (RoomDao.getDbModel())(data);
     }
     get _id() {
@@ -48,7 +48,6 @@ class RoomDao extends abstractDao_1.AbstractDao {
         });
     }
     update(id, data) {
-        console.log("id is", id);
         return RoomDao.dbModel.findByIdAndUpdate(id, data)
             .then((result) => {
             return data;

@@ -8,7 +8,7 @@ export class ReservationDao extends AbstractDao implements EntityDao {
     private static dbModel: mongoose.Model<mongoose.Document>;
 
     constructor(data: Reservation) {
-        super();
+        super(data);
         this.daoInstance = new (ReservationDao.getDbModel())(data);
     }
 

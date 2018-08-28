@@ -1,0 +1,60 @@
+<mat-card>
+    <mat-card-header class="header-container">
+        <mat-card-title class="title-area"><h1>Reservation list</h1></mat-card-title>
+        <div class="toolbox-area">
+            <button type="button" mat-button (click)="addReservation()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button type="button" mat-button (click)="cancelReservations()">
+                <mat-icon>event_cancel</mat-icon>
+            </button>
+        </div>
+    </mat-card-header>
+    <mat-card-content class="table-container">
+        <table mat-table #table [dataSource]="listSource" class="mat-elevation-z1">
+
+            <ng-container cdkColumnDef="selection">
+                <th mat-header-cell *cdkHeaderCellDef class="small-col" > <mat-checkbox></mat-checkbox> </th>
+                <td mat-cell *cdkCellDef="let row" class="small-col" (click)="selectRow(row)"> <mat-checkbox></mat-checkbox> </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="roomName">
+                <th mat-header-cell *cdkHeaderCellDef class="standard-col"> Salle </th>
+                <td mat-cell *cdkCellDef="let row" class="standard-col"> {{row.roomName}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="authorName">
+                <th mat-header-cell *cdkHeaderCellDef class="standard-col"> Auteur </th>
+                <td *cdkCellDef="let row" class="standard-col"> {{row.authorName}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="beginDate">
+                <th mat-header-cell *cdkHeaderCellDef class="standard-col"> Début </th>
+                <td *cdkCellDef="let row" class="standard-col"> {{row.beginDate}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="endDate">
+                <th mat-header-cell *cdkHeaderCellDef class="standard-col"> Fin </th>
+                <td *cdkCellDef="let row" class="standard-col"> {{row.endDate}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="controls">
+                <th mat-header-cell *cdkHeaderCellDef class="controls-col" > <div class="controls-header"></div> </th>
+                <td mat-cell *cdkCellDef="let row" class="controls-col"> 
+                    <button type="button" mat-button (click)="displayReservation(row)">
+                        <mat-icon>info</mat-icon>
+                    </button>
+                    <button type="button" mat-button (click)="editReservation(row)">
+                        <mat-icon >edit</mat-icon>
+                    </button>
+                    <button type="button" mat-button (click)="cancelReservation(row)">
+                        <mat-icon>event_cancel</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *cdkRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>

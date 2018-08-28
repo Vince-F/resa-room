@@ -7,8 +7,7 @@ export class RoomDao extends AbstractDao implements EntityDao {
     private static dbModel:mongoose.Model<mongoose.Document>;
 
     constructor(data:Room) {
-        super();
-        //load instead of create if there is an id and create if this iD doesn't exist
+        super(data);
         this.daoInstance = new (RoomDao.getDbModel())(data);
     }
 

@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const abstractDao_1 = require("./abstractDao");
 class ReservationDao extends abstractDao_1.AbstractDao {
     constructor(data) {
-        super();
+        super(data);
         this.daoInstance = new (ReservationDao.getDbModel())(data);
     }
     get _id() {
